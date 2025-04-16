@@ -174,139 +174,139 @@ function initializeDatabase() {
   `);
 }
 
-function insertSampleData() {
-  // Array com dados de exemplo de imóveis
-  const sampleProperties = [
-    {
-      code: 'VSR001',
-      title: 'Apartamento de Luxo no Jardim Paulista',
-      type: 'venda',
-      property_type: 'apartamento',
-      price: 950000,
-      status: 'ativo',
-      neighborhood: 'Jardim Paulista',
-      city: 'São Paulo',
-      area: 120,
-      bedrooms: 3,
-      bathrooms: 2,
-      parking_spaces: 2,
-      suites: 1,
-      furnished: 'não',
-      description: 'Lindo apartamento em localização privilegiada no Jardim Paulista, próximo a restaurantes, comércios e áreas verdes.',
-      featured: 1
-    },
-    {
-      code: 'VSR002',
-      title: 'Cobertura Duplex com Vista Panorâmica',
-      type: 'aluguel',
-      property_type: 'cobertura',
-      price: 8500,
-      status: 'ativo',
-      neighborhood: 'Moema',
-      city: 'São Paulo',
-      area: 200,
-      bedrooms: 4,
-      bathrooms: 3,
-      parking_spaces: 3,
-      suites: 2,
-      furnished: 'sim',
-      description: 'Cobertura duplex com vista panorâmica para o bairro de Moema. Amplo terraço com churrasqueira.',
-      featured: 1
-    },
-    {
-      code: 'VSR003',
-      title: 'Casa em Condomínio com Área de Lazer',
-      type: 'venda',
-      property_type: 'casa',
-      price: 1250000,
-      status: 'ativo',
-      neighborhood: 'Morumbi',
-      city: 'São Paulo',
-      area: 300,
-      bedrooms: 4,
-      bathrooms: 3,
-      parking_spaces: 4,
-      suites: 2,
-      furnished: 'não',
-      description: 'Casa espaçosa em condomínio fechado com área de lazer completa e segurança 24h.',
-      featured: 1
-    },
-    {
-      code: 'VSR004',
-      title: 'Residencial Villa Moderna - Pronto para Morar',
-      type: 'lancamento',
-      property_type: 'apartamento',
-      price: 650000,
-      status: 'ativo',
-      neighborhood: 'Brooklin',
-      city: 'São Paulo',
-      area: 90,
-      bedrooms: 2,
-      bathrooms: 2,
-      parking_spaces: 1,
-      suites: 1,
-      furnished: 'não',
-      description: 'Empreendimento recém lançado com ótimas opções de lazer e localização privilegiada no Brooklin.',
-      featured: 1
-    },
-    {
-      code: 'VSR005',
-      title: 'Escritório Comercial de Alto Padrão',
-      type: 'aluguel',
-      property_type: 'comercial',
-      price: 12000,
-      status: 'inativo',
-      neighborhood: 'Itaim Bibi',
-      city: 'São Paulo',
-      area: 180,
-      bedrooms: 0,
-      bathrooms: 2,
-      parking_spaces: 3,
-      suites: 0,
-      furnished: 'não',
-      description: 'Escritório de alto padrão em prédio comercial com serviços completos no Itaim Bibi.',
-      featured: 1
-    },
-    {
-      code: 'VSR006',
-      title: 'Apartamento Garden com Área Verde Privativa',
-      type: 'venda',
-      property_type: 'apartamento',
-      price: 875000,
-      status: 'vendido',
-      neighborhood: 'Perdizes',
-      city: 'São Paulo',
-      area: 150,
-      bedrooms: 3,
-      bathrooms: 2,
-      parking_spaces: 2,
-      suites: 1,
-      furnished: 'não',
-      description: 'Apartamento garden com área verde privativa em condomínio com infraestrutura completa.',
-      featured: 1
-    }
-  ];
+// function insertSampleData() {
+//   // Array com dados de exemplo de imóveis
+//   const sampleProperties = [
+//     {
+//       code: 'VSR001',
+//       title: 'Apartamento de Luxo no Jardim Paulista',
+//       type: 'venda',
+//       property_type: 'apartamento',
+//       price: 950000,
+//       status: 'ativo',
+//       neighborhood: 'Jardim Paulista',
+//       city: 'São Paulo',
+//       area: 120,
+//       bedrooms: 3,
+//       bathrooms: 2,
+//       parking_spaces: 2,
+//       suites: 1,
+//       furnished: 'não',
+//       description: 'Lindo apartamento em localização privilegiada no Jardim Paulista, próximo a restaurantes, comércios e áreas verdes.',
+//       featured: 1
+//     },
+//     {
+//       code: 'VSR002',
+//       title: 'Cobertura Duplex com Vista Panorâmica',
+//       type: 'aluguel',
+//       property_type: 'cobertura',
+//       price: 8500,
+//       status: 'ativo',
+//       neighborhood: 'Moema',
+//       city: 'São Paulo',
+//       area: 200,
+//       bedrooms: 4,
+//       bathrooms: 3,
+//       parking_spaces: 3,
+//       suites: 2,
+//       furnished: 'sim',
+//       description: 'Cobertura duplex com vista panorâmica para o bairro de Moema. Amplo terraço com churrasqueira.',
+//       featured: 1
+//     },
+//     {
+//       code: 'VSR003',
+//       title: 'Casa em Condomínio com Área de Lazer',
+//       type: 'venda',
+//       property_type: 'casa',
+//       price: 1250000,
+//       status: 'ativo',
+//       neighborhood: 'Morumbi',
+//       city: 'São Paulo',
+//       area: 300,
+//       bedrooms: 4,
+//       bathrooms: 3,
+//       parking_spaces: 4,
+//       suites: 2,
+//       furnished: 'não',
+//       description: 'Casa espaçosa em condomínio fechado com área de lazer completa e segurança 24h.',
+//       featured: 1
+//     },
+//     {
+//       code: 'VSR004',
+//       title: 'Residencial Villa Moderna - Pronto para Morar',
+//       type: 'lancamento',
+//       property_type: 'apartamento',
+//       price: 650000,
+//       status: 'ativo',
+//       neighborhood: 'Brooklin',
+//       city: 'São Paulo',
+//       area: 90,
+//       bedrooms: 2,
+//       bathrooms: 2,
+//       parking_spaces: 1,
+//       suites: 1,
+//       furnished: 'não',
+//       description: 'Empreendimento recém lançado com ótimas opções de lazer e localização privilegiada no Brooklin.',
+//       featured: 1
+//     },
+//     {
+//       code: 'VSR005',
+//       title: 'Escritório Comercial de Alto Padrão',
+//       type: 'aluguel',
+//       property_type: 'comercial',
+//       price: 12000,
+//       status: 'inativo',
+//       neighborhood: 'Itaim Bibi',
+//       city: 'São Paulo',
+//       area: 180,
+//       bedrooms: 0,
+//       bathrooms: 2,
+//       parking_spaces: 3,
+//       suites: 0,
+//       furnished: 'não',
+//       description: 'Escritório de alto padrão em prédio comercial com serviços completos no Itaim Bibi.',
+//       featured: 1
+//     },
+//     {
+//       code: 'VSR006',
+//       title: 'Apartamento Garden com Área Verde Privativa',
+//       type: 'venda',
+//       property_type: 'apartamento',
+//       price: 875000,
+//       status: 'vendido',
+//       neighborhood: 'Perdizes',
+//       city: 'São Paulo',
+//       area: 150,
+//       bedrooms: 3,
+//       bathrooms: 2,
+//       parking_spaces: 2,
+//       suites: 1,
+//       furnished: 'não',
+//       description: 'Apartamento garden com área verde privativa em condomínio com infraestrutura completa.',
+//       featured: 1
+//     }
+//   ];
 
-  // Inserir os imóveis de exemplo
-  const insertPropertyStmt = db.prepare(`
-    INSERT INTO properties (
-      code, title, type, property_type, price, status, neighborhood, city, 
-      area, bedrooms, bathrooms, parking_spaces, suites, furnished, description, featured
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `);
+//   // Inserir os imóveis de exemplo
+//   const insertPropertyStmt = db.prepare(`
+//     INSERT INTO properties (
+//       code, title, type, property_type, price, status, neighborhood, city, 
+//       area, bedrooms, bathrooms, parking_spaces, suites, furnished, description, featured
+//     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+//   `);
 
-  sampleProperties.forEach(property => {
-    insertPropertyStmt.run(
-      property.code, property.title, property.type, property.property_type, 
-      property.price, property.status, property.neighborhood, property.city,
-      property.area, property.bedrooms, property.bathrooms, property.parking_spaces,
-      property.suites, property.furnished, property.description, property.featured
-    );
-  });
+//   sampleProperties.forEach(property => {
+//     insertPropertyStmt.run(
+//       property.code, property.title, property.type, property.property_type, 
+//       property.price, property.status, property.neighborhood, property.city,
+//       property.area, property.bedrooms, property.bathrooms, property.parking_spaces,
+//       property.suites, property.furnished, property.description, property.featured
+//     );
+//   });
 
-  insertPropertyStmt.finalize();
-  console.log('Dados de exemplo inseridos com sucesso!');
-}
+//   insertPropertyStmt.finalize();
+//   console.log('Dados de exemplo inseridos com sucesso!');
+// }
 
 // Rotas para o site principal
 
