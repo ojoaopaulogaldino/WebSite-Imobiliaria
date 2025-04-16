@@ -158,7 +158,8 @@ function initializeDatabase() {
       console.error(err.message);
     } else if (row.count === 0) {
       // Inserir dados de exemplo
-      insertSampleData();
+      // insertSampleData();
+      console.log('Sem dados a serem inseridos');
     }
   });
 
