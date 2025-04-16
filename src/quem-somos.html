@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <nav class="bg-white">
+        <div class="nav-container">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="index.html">
+                    <img src="assets/images/logos/Logotipo - Versare - Marrom.png" alt="logo" class="w-[130px] h-auto">
+                </a>
+                <button class="mobile-menu-button" id="menuButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+            <ul class="nav-menu" id="mobileMenu">
+                <li>
+                    <a href="index.html">Imóveis</a>
+                </li>
+                <li>
+                    <a href="lancamentos.html">Lançamentos</a>
+                </li>
+                <li>
+                    <a href="venda.html">Venda</a>
+                </li>
+                <li>
+                    <a href="aluguel.html">Aluguel</a>
+                </li>
+                <li>
+                    <a href="quem-somos.html" class="font-bold">Quem Somos</a>
+                </li>
+            </ul>
+            <div class="hidden md:block">
+                <a href="booking.html" class="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5">
+                    <img src="assets/images/icons/call.svg" class="w-6 h-6" alt="icon">
+                    <span class="font-semibold">Fale Conosco</span>
+                </a>
+            </div>
+        </div>
+        <!-- Menu Mobile -->
+        <div class="mobile-menu hidden" id="mobileMenuDropdown">
+            <a href="index.html">Imóveis</a>
+            <a href="lancamentos.html">Lançamentos</a>
+            <a href="venda.html">Venda</a>
+            <a href="aluguel.html">Aluguel</a>
+            <a href="quem-somos.html" class="font-bold">Quem Somos</a>
+            <a href="booking.html" class="flex items-center justify-center gap-[10px] rounded-full border border-[#000929] py-3 px-5 mt-4 w-[80%]">
+                <img src="assets/images/icons/call.svg" class="w-6 h-6" alt="icon">
+                <span class="font-semibold">Fale Conosco</span>
+            </a>
+        </div>
+    </nav>
+    <div id="Banner" class="relative w-full h-[240px] flex items-center shrink-0 overflow-hidden -mb-[50px]">
+        <h1 class="text-center mx-auto font-extrabold text-[40px] leading-[60px] text-white mb-5 z-20">Conheça a Versare Imóveis</h1>
+        <div class="absolute w-full h-full bg-[linear-gradient(180deg,_rgba(0,0,0,0)_0%,#000000_91.83%)] z-10"></div>
+        <img src="assets/images/thumbnails/thumbnail-details-5.png" class="absolute w-full h-full object-cover object-top" alt="">
+    </div>
+    <section class="relative flex flex-col w-full max-w-[930px] gap-[30px] mx-auto mb-[100px] z-20 mt-[100px]">
+        <div class="flex flex-col rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
+            <h2 class="font-bold text-[32px] leading-[48px]">Nossa História</h2>
+            <p class="leading-[28px]">A Versare Imóveis nasceu em 2005 com a missão de transformar a experiência de compra, venda e locação de imóveis no Brasil. Fundada pelo corretor Antônio Versare, que após anos de experiência no mercado imobiliário decidiu criar uma empresa com valores sólidos de transparência, ética e excelência no atendimento.</p>
+            <p class="leading-[28px]">Ao longo dos anos, expandimos nossa atuação para 15 cidades, mantendo sempre o compromisso com a qualidade e a satisfação dos nossos clientes. Nossa equipe é formada por profissionais experientes e qualificados, prontos para oferecer as melhores soluções imobiliárias para nossos clientes.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-[30px] mt-[20px]">
+                <div class="flex items-start gap-4">
+                    <img src="assets/images/icons/verify.svg" class="w-[30px] h-[30px]" alt="icon">
+                    <div>
+                        <h3 class="font-bold text-xl mb-2">Missão</h3>
+                        <p class="leading-[24px]">Proporcionar experiências imobiliárias excepcionais, conectando pessoas aos imóveis ideais para suas necessidades e objetivos.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <img src="assets/images/icons/verify.svg" class="w-[30px] h-[30px]" alt="icon">
+                    <div>
+                        <h3 class="font-bold text-xl mb-2">Visão</h3>
+                        <p class="leading-[24px]">Ser reconhecida como a imobiliária mais confiável e inovadora do Brasil, referência em qualidade de atendimento e resultados.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <img src="assets/images/icons/verify.svg" class="w-[30px] h-[30px]" alt="icon">
+                    <div>
+                        <h3 class="font-bold text-xl mb-2">Valores</h3>
+                        <p class="leading-[24px]">Transparência, ética, compromisso, excelência e inovação guiam todas as nossas ações e relacionamentos.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <img src="assets/images/icons/verify.svg" class="w-[30px] h-[30px]" alt="icon">
+                    <div>
+                        <h3 class="font-bold text-xl mb-2">Diferenciais</h3>
+                        <p class="leading-[24px]">Atendimento personalizado, avaliação precisa de imóveis, marketing digital especializado e acompanhamento completo do cliente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex flex-col rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white mt-[30px]">
+            <h2 class="font-bold text-[32px] leading-[48px]">Nossa Equipe</h2>
+            <p class="leading-[28px]">Contamos com uma equipe de profissionais qualificados e apaixonados pelo mercado imobiliário, sempre prontos para atender às suas necessidades.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-[30px] mt-[20px]">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-[150px] h-[150px] rounded-full overflow-hidden mb-4">
+                        <img src="assets/images/photos/photo-1.png" class="w-full h-full object-cover" alt="Antonio Versare">
+                    </div>
+                    <h3 class="font-bold text-xl">Antônio Versare</h3>
+                    <p class="text-[#1E5DBC] font-medium">Fundador e CEO</p>
+                    <p class="mt-2 leading-[24px]">30 anos de experiência no mercado imobiliário, especialista em negociações de alto padrão.</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-[150px] h-[150px] rounded-full overflow-hidden mb-4">
+                        <img src="assets/images/photos/photo-2.png" class="w-full h-full object-cover" alt="Maria Silva">
+                    </div>
+                    <h3 class="font-bold text-xl">Maria Silva</h3>
+                    <p class="text-[#1E5DBC] font-medium">Diretora Comercial</p>
+                    <p class="mt-2 leading-[24px]">15 anos de atuação em vendas, especialista em marketing imobiliário e lançamentos.</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-[150px] h-[150px] rounded-full overflow-hidden mb-4">
+                        <img src="assets/images/photos/photo-1.png" class="w-full h-full object-cover" alt="Carlos Mendes">
+                    </div>
+                    <h3 class="font-bold text-xl">Carlos Mendes</h3>
+                    <p class="text-[#1E5DBC] font-medium">Gerente de Avaliações</p>
+                    <p class="mt-2 leading-[24px]">Especialista em avaliação imobiliária com mais de 10 anos de experiência no mercado.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="w-full bg-[#1E5DBC] rounded-[20px] p-[30px] text-center mt-[30px] gap-[30px] display-[flex] flex-direction-[column]">
+            <h2 class="font-bold text-[28px] leading-[42px] text-white mb-4">Quer fazer parte da nossa equipe?</h2>
+            <p class="text-white mb-6 max-w-[600px] mx-auto">Estamos sempre em busca de novos talentos para somar ao nosso time. Envie seu currículo e seja parte desta história de sucesso.</p>
+            <a href="booking.html" class="inline-block bg-white text-[#1E5DBC] font-bold py-3 px-6 rounded-full">
+                Trabalhe Conosco
+            </a>
+        </div>
+    </section>
+    
+    <footer class="flex flex-col bg-white mt-auto pt-[50px]">
+        <div class="flex flex-col container-responsive py-10 gap-10">
+            <div class="flex flex-col md:flex-row gap-10 justify-between">
+                <div class="flex flex-col gap-7 max-w-[330px]">
+                    <img src="assets/images/logos/Logotipo - Versare - Marrom.png" class="w-[150px] h-auto" alt="logo">
+                    <p class="text-sm leading-[28px]">Versare Imóveis: Transformando sonhos em realidade desde 2005. Trabalhamos com excelência e dedicação para encontrar o imóvel perfeito para você.</p>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between flex-1 gap-10">
+                    <div class="flex flex-col gap-5">
+                        <p class="font-bold text-lg">Imóveis</p>
+                        <div class="flex flex-col gap-[10px]">
+                            <a href="#">Apartamentos</a>
+                            <a href="#">Casas</a>
+                            <a href="#">Comerciais</a>
+                            <a href="#">Terrenos</a>
+                            <a href="#">Lançamentos</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-5">
+                        <p class="font-bold text-lg">Sobre Nós</p>
+                        <div class="flex flex-col gap-[10px]">
+                            <a href="quem-somos.html">Quem Somos</a>
+                            <a href="quem-somos.html#equipe">Nossa Equipe</a>
+                            <a href="#">Depoimentos</a>
+                            <a href="#">Parceiros</a>
+                            <a href="quem-somos.html#trabalhe">Trabalhe Conosco</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-5">
+                        <p class="font-bold text-lg">Contato</p>
+                        <div class="flex flex-col gap-[10px]">
+                            <a href="booking.html">Fale Conosco</a>
+                            <a href="booking.html">Atendimento</a>
+                            <a href="#">Localização</a>
+                            <a href="#">FAQ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-[#F6F5FD]">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
+                <div class="flex gap-[10px]">
+                    <a href="#">Termos & Condições</a>
+                    <a href="#">Política de privacidade</a>
+                </div>
+                <p>2024 Versare Imóveis. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenuDropdown = document.getElementById('mobileMenuDropdown');
+            
+            menuButton.addEventListener('click', function() {
+                mobileMenuDropdown.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html> 

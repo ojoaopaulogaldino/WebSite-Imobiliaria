@@ -1,0 +1,413 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>Adicionar Imóvel | Painel Administrativo</title>
+</head>
+<body class="bg-[#F7F7FD]">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-[#E0DEF7] shadow-md hidden md:block">
+            <div class="p-4 border-b border-[#E0DEF7]">
+                <a href="../index.html" target="_blank" class="block">
+                    <img src="../assets/images/logos/logo.svg" alt="First Office" class="w-[130px]">
+                </a>
+                <p class="mt-2 text-sm text-gray-500">Painel Administrativo</p>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="index.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="imoveis.html" class="flex items-center p-3 bg-[#1E5DBC] text-white rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            Imóveis
+                        </a>
+                    </li>
+                    <li>
+                        <a href="lancamentos.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            Lançamentos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contatos.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            Mensagens
+                        </a>
+                    </li>
+                    <li>
+                        <a href="configuracoes.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Configurações
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="flex-1 flex flex-col">
+            <!-- Top navbar -->
+            <header class="bg-white shadow-sm border-b border-[#E0DEF7] p-4">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-4">
+                        <button class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                        <h1 class="text-xl font-semibold text-gray-800">Adicionar Novo Imóvel</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <button class="p-2 rounded-full bg-gray-100 hover:bg-gray-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="mr-2 text-sm font-medium text-gray-700">Admin</span>
+                            <img src="../assets/images/icons/avatar-placeholder.svg" alt="Avatar" class="h-8 w-8 rounded-full">
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main content -->
+            <main class="flex-1 p-6">
+                <div class="mb-6">
+                    <a href="imoveis.html" class="text-[#1E5DBC] hover:text-indigo-800 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Voltar para lista de imóveis
+                    </a>
+                </div>
+                
+                <!-- Form -->
+                <div class="bg-white rounded-lg shadow p-6 border border-[#E0DEF7] mb-6">
+                    <form id="propertyForm">
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Informações Básicas</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="title" class="font-semibold">Título do Imóvel *</label>
+                                    <input type="text" id="title" name="title" placeholder="Ex: Apartamento de Luxo no Jardim Paulista" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full" required>
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="code" class="font-semibold">Código *</label>
+                                    <input type="text" id="code" name="code" placeholder="Ex: VSR001" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full" required>
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="type" class="font-semibold">Tipo de Anúncio *</label>
+                                    <select id="type" name="type" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full" required>
+                                        <option value="">Selecione o tipo</option>
+                                        <option value="venda">Venda</option>
+                                        <option value="aluguel">Aluguel</option>
+                                        <option value="lancamento">Lançamento</option>
+                                    </select>
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="status" class="font-semibold">Status *</label>
+                                    <select id="status" name="status" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full" required>
+                                        <option value="ativo">Ativo</option>
+                                        <option value="inativo">Inativo</option>
+                                        <option value="vendido">Vendido/Alugado</option>
+                                    </select>
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="property_type" class="font-semibold">Tipo de Imóvel *</label>
+                                    <select id="property_type" name="property_type" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full" required>
+                                        <option value="">Selecione o tipo</option>
+                                        <option value="apartamento">Apartamento</option>
+                                        <option value="casa">Casa</option>
+                                        <option value="cobertura">Cobertura</option>
+                                        <option value="sala-comercial">Sala Comercial</option>
+                                        <option value="terreno">Terreno/Lote</option>
+                                        <option value="galpao">Galpão</option>
+                                    </select>
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="price" class="font-semibold">Preço *</label>
+                                    <input type="text" id="price" name="price" placeholder="Ex: 950000" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full" required>
+                                    <p class="text-xs text-gray-500">Para lançamentos, use "A partir de" no título</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Localização</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="neighborhood" class="font-semibold">Bairro *</label>
+                                    <input type="text" id="neighborhood" name="neighborhood" placeholder="Ex: Jardim Paulista" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full" required>
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="city" class="font-semibold">Cidade *</label>
+                                    <input type="text" id="city" name="city" placeholder="Ex: São Paulo" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full" required>
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="address" class="font-semibold">Endereço</label>
+                                    <input type="text" id="address" name="address" placeholder="Ex: Rua Oscar Freire, 123" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                                    <p class="text-xs text-gray-500">O endereço completo não será exibido publicamente</p>
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="postal_code" class="font-semibold">CEP</label>
+                                    <input type="text" id="postal_code" name="postal_code" placeholder="Ex: 01426-000" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Características</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="area" class="font-semibold">Área (m²)</label>
+                                    <input type="number" id="area" name="area" placeholder="Ex: 120" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="bedrooms" class="font-semibold">Quartos</label>
+                                    <input type="number" id="bedrooms" name="bedrooms" placeholder="Ex: 3" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="bathrooms" class="font-semibold">Banheiros</label>
+                                    <input type="number" id="bathrooms" name="bathrooms" placeholder="Ex: 2" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="parking_spaces" class="font-semibold">Vagas de Garagem</label>
+                                    <input type="number" id="parking_spaces" name="parking_spaces" placeholder="Ex: 2" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="suites" class="font-semibold">Suítes</label>
+                                    <input type="number" id="suites" name="suites" placeholder="Ex: 1" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="furnished" class="font-semibold">Mobiliado</label>
+                                    <select id="furnished" name="furnished" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                                        <option value="nao">Não</option>
+                                        <option value="sim">Sim</option>
+                                        <option value="parcial">Parcialmente</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6">
+                                <label class="font-semibold">Comodidades</label>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="amenity_piscina" name="amenity_piscina" value="piscina" class="mr-2">
+                                        <label for="amenity_piscina">Piscina</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="amenity_academia" name="amenity_academia" value="academia" class="mr-2">
+                                        <label for="amenity_academia">Academia</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="amenity_playground" name="amenity_playground" value="playground" class="mr-2">
+                                        <label for="amenity_playground">Playground</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="amenity_churrasqueira" name="amenity_churrasqueira" value="churrasqueira" class="mr-2">
+                                        <label for="amenity_churrasqueira">Churrasqueira</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="amenity_seguranca" name="amenity_seguranca" value="seguranca" class="mr-2">
+                                        <label for="amenity_seguranca">Segurança 24h</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="amenity_spa" name="amenity_spa" value="spa" class="mr-2">
+                                        <label for="amenity_spa">Spa</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="amenity_jardim" name="amenity_jardim" value="jardim" class="mr-2">
+                                        <label for="amenity_jardim">Jardim</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="amenity_elevador" name="amenity_elevador" value="elevador" class="mr-2">
+                                        <label for="amenity_elevador">Elevador</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Descrição</h3>
+                            <div class="flex flex-col gap-[10px]">
+                                <textarea id="description" name="description" rows="6" placeholder="Descreva o imóvel em detalhes..." class="rounded-[10px] border border-[#E0DEF7] p-3 w-full"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Imagens</h3>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center" id="drop-area">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                <h4 class="mt-2 text-sm font-medium text-gray-700">Arraste suas imagens aqui</h4>
+                                <p class="mt-1 text-xs text-gray-500">Ou clique para selecionar</p>
+                                <p class="mt-2 text-xs text-gray-500">PNG, JPG até 5MB</p>
+                                <input type="file" multiple class="hidden" id="property-images" name="property-images" accept="image/png, image/jpeg, image/jpg">
+                                <button type="button" class="mt-4 inline-flex items-center px-4 py-2 border border-[#1E5DBC] shadow-sm text-sm font-medium rounded-md text-[#1E5DBC] bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1E5DBC]" id="select-files-btn">
+                                    Selecionar arquivos
+                                </button>
+                            </div>
+                            
+                            <!-- Preview of uploaded images -->
+                            <div id="image-preview" class="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                                <!-- Imagens carregadas serão exibidas aqui -->
+                            </div>
+                        </div>
+                        
+                        <!-- Seção de Vídeos do YouTube -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Vídeos do YouTube</h3>
+                            <p class="text-sm text-gray-600 mb-4">Adicione links de vídeos do YouTube para mostrar detalhes do imóvel aos clientes</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="video-url" class="font-semibold">URL do Vídeo</label>
+                                    <input type="text" id="video-url" placeholder="https://youtube.com/watch?v=..." class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                                    <p class="text-xs text-gray-500">Insira o link completo do YouTube (ex: https://www.youtube.com/watch?v=XXXXXXXX)</p>
+                                </div>
+                                <div class="flex flex-col gap-[10px]">
+                                    <label for="video-title" class="font-semibold">Título do Vídeo (opcional)</label>
+                                    <input type="text" id="video-title" placeholder="Tour virtual do apartamento" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                                </div>
+                            </div>
+                            
+                            <button type="button" id="add-video-btn" class="mt-4 inline-flex items-center px-4 py-2 border border-[#1E5DBC] shadow-sm text-sm font-medium rounded-md text-white bg-[#1E5DBC] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1E5DBC]">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                                Adicionar Vídeo
+                            </button>
+                            
+                            <!-- Preview de vídeos adicionados -->
+                            <div id="video-preview" class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                                <p class="text-gray-500 text-center col-span-full">Nenhum vídeo adicionado</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="featured" name="featured" class="mr-2">
+                                <label for="featured">Destacar imóvel na página inicial</label>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-end space-x-4">
+                            <a href="imoveis.html" class="btn btn-secondary btn-md">Cancelar</a>
+                            <button type="submit" class="btn btn-primary btn-md whitespace-nowrap bg-[#1E5DBC]">Salvar Imóvel</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script type="module">
+        import { checkAuth } from '../assets/js/modules/auth.js';
+        import { handlePropertyForm } from '../assets/js/modules/properties.js';
+        import { initImageUploader } from '../assets/js/modules/image-uploader.js';
+        import { initVideoManager } from '../assets/js/modules/video-manager.js';
+
+        // Garantir que a variável global pendingVideos esteja definida
+        if (!window.pendingVideos) {
+            window.pendingVideos = [];
+            console.log('Inicializando array global de vídeos pendentes');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar autenticação
+            checkAuth();
+            
+            // Inicializar o uploader de imagens
+            initImageUploader('property-images', 'image-preview');
+            
+            // Inicializar o gerenciador de vídeos
+            initVideoManager('video-preview', 'video-url', 'video-title', 'add-video-btn');
+            
+            // Configurar o evento de envio do formulário
+            const form = document.getElementById('propertyForm');
+            form.addEventListener('submit', function(event) {
+                console.log('Formulário enviado!');
+                console.log('Vídeos pendentes:', window.pendingVideos);
+                handlePropertyForm(event);
+            });
+            
+            // Configurar o botão de selecionar arquivos
+            const selectFilesBtn = document.getElementById('select-files-btn');
+            if (selectFilesBtn) {
+                selectFilesBtn.addEventListener('click', function() {
+                    document.getElementById('property-images').click();
+                });
+            }
+            
+            // Configurar drag and drop para upload de imagens
+            const dropArea = document.getElementById('drop-area');
+            if (dropArea) {
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    dropArea.addEventListener(eventName, preventDefaults, false);
+                });
+                
+                function preventDefaults(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    dropArea.addEventListener(eventName, highlight, false);
+                });
+                
+                ['dragleave', 'drop'].forEach(eventName => {
+                    dropArea.addEventListener(eventName, unhighlight, false);
+                });
+                
+                function highlight() {
+                    dropArea.classList.add('border-[#1E5DBC]', 'bg-blue-50');
+                }
+                
+                function unhighlight() {
+                    dropArea.classList.remove('border-[#1E5DBC]', 'bg-blue-50');
+                }
+                
+                dropArea.addEventListener('drop', handleDrop, false);
+                
+                function handleDrop(e) {
+                    const dt = e.dataTransfer;
+                    const files = dt.files;
+                    const fileInput = document.getElementById('property-images');
+                    
+                    // Atualizar o input de arquivo com os arquivos arrastados
+                    if (fileInput && files.length > 0) {
+                        fileInput.files = files;
+                        
+                        // Disparar evento de change manualmente
+                        const event = new Event('change');
+                        fileInput.dispatchEvent(event);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

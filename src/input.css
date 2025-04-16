@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    font-family: "Poppins";
+    font-display: swap;
+    color: #000929;
+    background-color: #F7F7FD;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Classes responsivas */
+@layer components {
+    /* Classe para todos os ícones SVG */
+    .icon {
+        filter: brightness(100%) contrast(100%) saturate(100%) sepia(0%) grayscale(0%) hue-rotate(77deg) blur(0px);
+    }
+    
+    .container-responsive {
+        @apply w-full max-w-[1130px] mx-auto px-4 sm:px-6 lg:px-8;
+    }
+    
+    .nav-container {
+        @apply flex flex-col md:flex-row items-center justify-between w-full max-w-[1130px] py-[22px] mx-auto px-4 sm:px-6 lg:px-8 gap-4 md:gap-0;
+    }
+    
+    .nav-menu {
+        @apply hidden md:flex items-center gap-[30px] lg:gap-[50px] w-full md:w-fit justify-center flex-wrap;
+    }
+    
+    .mobile-menu-button {
+        @apply md:hidden flex items-center justify-center w-10 h-10 rounded-full border border-[#000929];
+    }
+    
+    .mobile-menu {
+        @apply md:hidden flex flex-col w-full items-center gap-4 py-4;
+    }
+    
+    .hero-section {
+        @apply relative flex flex-col lg:flex-row w-full;
+    }
+    
+    .hero-text {
+        @apply relative flex flex-col w-full max-w-full lg:max-w-[650px] h-fit rounded-[30px] border border-[#E0DEF7] p-5 sm:p-10 gap-[15px] sm:gap-[30px] bg-white mt-[30px] sm:mt-[70px] mx-4 sm:mx-auto lg:ml-[calc((100%-1130px)/2)] z-10;
+    }
+    
+    .hero-buttons {
+        @apply flex flex-col sm:flex-row items-center gap-5;
+    }
+    
+    .hero-image {
+        @apply relative lg:absolute right-0 w-full lg:w-[calc(100%-((100%-1130px)/2)-305px)] h-[300px] sm:h-[400px] lg:h-[720px] rounded-bl-[40px] overflow-hidden mt-8 lg:mt-0;
+    }
+    
+    .stats-container {
+        @apply flex flex-col sm:flex-row justify-center flex-wrap gap-[30px] sm:gap-[50px] text-center;
+    }
+    
+    .grid-responsive {
+        @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-[30px];
+    }
+    
+    .details-container {
+        @apply relative flex flex-col lg:flex-row max-w-[1130px] mx-auto gap-[30px] mb-20 px-4 sm:px-6 lg:px-8 z-10;
+    }
+    
+    .details-sidebar {
+        @apply w-full lg:w-[392px] flex flex-col shrink-0 gap-[30px];
+    }
+    
+    .card-container {
+        @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px];
+    }
+
+    /* Botões */
+    .btn {
+        @apply flex items-center justify-center rounded-full font-bold transition-all whitespace-nowrap;
+    }
+
+    .btn-primary {
+        @apply btn bg-[#1E5DBC] text-white hover:bg-opacity-90;
+    }
+
+    .btn-secondary {
+        @apply btn bg-white text-[#000929] border border-[#000929];
+    }
+
+    .btn-outline {
+        @apply btn bg-white text-[#1E5DBC] border border-[#000929];
+    }
+
+    .btn-tag {
+        @apply absolute top-5 left-5 w-fit rounded-full p-[6px_16px] bg-[#1E5DBC] font-bold text-sm leading-[21px] text-[#F7F7FD];
+    }
+
+    /* Tamanhos de botões */
+    .btn-sm {
+        @apply py-2 px-4 text-sm;
+    }
+
+    .btn-md {
+        @apply py-3 px-6 text-sm;
+    }
+
+    .btn-lg {
+        @apply py-[16px] px-[26px] text-base;
+    }
+
+    .btn-xl {
+        @apply py-[20px] px-[26px] text-xl gap-3;
+    }
+
+    /* Nav button */
+    .btn-nav {
+        @apply flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5;
+    }
+
+    /* Filtros para ícones */
+    .icon-white {
+        filter: brightness(100%) contrast(100%) saturate(100%) sepia(0%) grayscale(0%) hue-rotate(77deg) blur(0px);
+    }
+
+    .icon-primary {
+        filter: brightness(100%) contrast(100%) saturate(100%) sepia(0%) grayscale(0%) hue-rotate(77deg) blur(0px);
+    }
+
+    .icon-secondary {
+        filter: brightness(100%) contrast(100%) saturate(100%) sepia(0%) grayscale(0%) hue-rotate(77deg) blur(0px) opacity(80%);
+    }
+
+    /* Cores específicas para ícones */
+    .icon-blue {
+        filter: brightness(100%) contrast(100%) saturate(100%) sepia(0%) grayscale(0%) hue-rotate(77deg) blur(0px);
+    }
+
+    .icon-light-blue {
+        filter: brightness(100%) contrast(100%) saturate(100%) sepia(0%) grayscale(0%) hue-rotate(77deg) blur(0px) opacity(80%);
+    }
+
+    .icon-dark-blue {
+        filter: brightness(80%) contrast(120%) saturate(100%) sepia(0%) grayscale(0%) hue-rotate(77deg) blur(0px);
+    }
+}
+
+/* Menu responsivo aberto */
+.menu-open {
+    @apply block;
+}

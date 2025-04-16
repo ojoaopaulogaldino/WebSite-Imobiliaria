@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <nav class="bg-white">
+        <div class="nav-container">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="index.html">
+                    <img src="assets/images/logos/Logotipo - Versare - Marrom.png" alt="logo" class="w-[130px] h-auto">
+                </a>
+                <button class="mobile-menu-button" id="menuButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+            <ul class="nav-menu" id="mobileMenu">
+                <li>
+                    <a href="index.html">Imóveis</a>
+                </li>
+                <li>
+                    <a href="">Lançamentos</a>
+                </li>
+                <li>
+                    <a href="">Venda</a>
+                </li>
+                <li>
+                    <a href="">Aluguel</a>
+                </li>
+                <li>
+                    <a href="booking.html">Contato</a>
+                </li>
+            </ul>
+            <div class="hidden md:block">
+                <a href="booking.html" class="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5">
+                    <img src="assets/images/icons/call.svg" class="w-6 h-6" alt="icon">
+                    <span class="font-semibold">Fale Conosco</span>
+                </a>
+            </div>
+        </div>
+        <!-- Menu Mobile -->
+        <div class="mobile-menu hidden" id="mobileMenuDropdown">
+            <a href="index.html">Imóveis</a>
+            <a href="">Lançamentos</a>
+            <a href="">Venda</a>
+            <a href="">Aluguel</a>
+            <a href="booking.html">Contato</a>
+            <a href="#" class="flex items-center justify-center gap-[10px] rounded-full border border-[#000929] py-3 px-5 mt-4 w-[80%]">
+                <img src="assets/images/icons/call.svg" class="w-6 h-6" alt="icon">
+                <span class="font-semibold">Fale Conosco</span>
+            </a>
+        </div>
+    </nav>
+    <div id="Banner" class="relative w-full h-[240px] flex items-center shrink-0 overflow-hidden -mb-[50px]">
+        <h1 class="text-center mx-auto font-extrabold text-[40px] leading-[60px] text-white mb-5 z-20">Entre em Contato Conosco</h1>
+        <div class="absolute w-full h-full bg-[linear-gradient(180deg,_rgba(0,0,0,0)_0%,#000000_91.83%)] z-10"></div>
+        <img src="assets/images/thumbnails/thumbnail-details-4.png" class="absolute w-full h-full object-cover object-top" alt="">
+    </div>
+    <form action="booking-finished.html" class="relative flex flex-col lg:flex-row justify-center max-w-[1130px] mx-auto gap-[30px] px-4 mb-20 z-20">
+        <div class="flex flex-col shrink-0 w-full lg:w-[500px] h-fit rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
+            <div class="flex items-center gap-4">
+                <img src="assets/images/logos/Logotipo - Versare - Marrom.png" class="h-12" alt="logo">
+                <h2 class="font-bold text-xl leading-[30px]">Imobiliária FirstHome</h2>
+            </div>
+            <hr class="border-[#F6F5FD]">
+            <div class="flex flex-col gap-4">
+                <h2 class="font-bold">Preencha o Formulário</h2>
+                <div class="flex flex-col gap-2">
+                    <label for="name" class="font-semibold">Nome Completo</label>
+                    <div class="flex items-center rounded-full border border-[#000929] px-5 gap-[10px] transition-all duration-300 focus-within:ring-2 focus-within:ring-[#1E5DBC]">
+                        <img src="assets/images/icons/security-user-black.svg" class="w-6 h-6" alt="icon">
+                        <input type="text" name="name" id="name" class="appearance-none outline-none w-full py-3 font-semibold placeholder:font-normal placeholder:text-[#000929]" placeholder="Digite seu nome completo">
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="email" class="font-semibold">E-mail</label>
+                    <div class="flex items-center rounded-full border border-[#000929] px-5 gap-[10px] transition-all duration-300 focus-within:ring-2 focus-within:ring-[#1E5DBC]">
+                        <img src="assets/images/icons/sms.svg" class="w-6 h-6" alt="icon">
+                        <input type="email" name="email" id="email" class="appearance-none outline-none w-full py-3 font-semibold placeholder:font-normal placeholder:text-[#000929]" placeholder="Digite seu e-mail">
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="phone" class="font-semibold">Número de Telefone</label>
+                    <div class="flex items-center rounded-full border border-[#000929] px-5 gap-[10px] transition-all duration-300 focus-within:ring-2 focus-within:ring-[#1E5DBC]">
+                        <img src="assets/images/icons/call-black.svg" class="w-6 h-6" alt="icon">
+                        <input type="tel" name="phone" id="phone" class="appearance-none outline-none w-full py-3 font-semibold placeholder:font-normal placeholder:text-[#000929]" placeholder="Digite seu número">
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="message" class="font-semibold">Mensagem</label>
+                    <div class="flex items-start rounded-[20px] border border-[#000929] px-5 py-3 gap-[10px] transition-all duration-300 focus-within:ring-2 focus-within:ring-[#1E5DBC]">
+                        <img src="assets/images/icons/message-text.svg" class="w-6 h-6 mt-2" alt="icon">
+                        <textarea name="message" id="message" rows="4" class="appearance-none outline-none w-full py-1 font-semibold placeholder:font-normal placeholder:text-[#000929]" placeholder="Escreva sua mensagem ou dúvida"></textarea>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-[#F6F5FD]">
+            <div class="flex items-center gap-3">
+                <img src="assets/images/icons/shield-tick.svg" class="w-[30px] h-[30px]" alt="icon">
+                <p class="font-semibold leading-[28px]">Seus dados estão protegidos e não serão compartilhados com terceiros.</p>
+            </div>
+            <button type="submit" class="flex items-center justify-center w-full rounded-full p-[16px_26px] gap-3 bg-[#1E5DBC] font-bold text-[#F7F7FD]">
+                <span>Enviar Mensagem</span>
+            </button>
+        </div>
+        <div class="flex flex-col shrink-0 w-full lg:w-[400px] h-fit rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
+            <h2 class="font-bold">Informações de Contato</h2>
+            <div class="flex flex-col gap-5">
+                <div class="flex items-start gap-3">
+                    <img src="assets/images/icons/location.svg" class="w-6 h-6 mt-1" alt="icon">
+                    <div>
+                        <p class="font-bold">Endereço</p>
+                        <p>Av. Paulista, 1000, Centro - São Paulo/SP</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <img src="assets/images/icons/call-black.svg" class="w-6 h-6 mt-1" alt="icon">
+                    <div>
+                        <p class="font-bold">Telefone</p>
+                        <p>(11) 99999-9999</p>
+                        <p>(11) 3333-3333</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <img src="assets/images/icons/sms.svg" class="w-6 h-6 mt-1" alt="icon">
+                    <div>
+                        <p class="font-bold">E-mail</p>
+                        <p>contato@firsthome.com.br</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <img src="assets/images/icons/clock.svg" class="w-6 h-6 mt-1" alt="icon">
+                    <div>
+                        <p class="font-bold">Horário de Atendimento</p>
+                        <p>Segunda a Sexta: 9h às 18h</p>
+                        <p>Sábado: 9h às 13h</p>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-[#F6F5FD]">
+            <h2 class="font-bold">Siga-nos nas Redes Sociais</h2>
+            <div class="flex gap-4 justify-center">
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#1E5DBC]">
+                    <img src="assets/images/icons/instagram.svg" class="w-5 h-5" alt="social">
+                </a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#1E5DBC]">
+                    <img src="assets/images/icons/facebook.svg" class="w-5 h-5" alt="social">
+                </a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#1E5DBC]">
+                    <img src="assets/images/icons/youtube.svg" class="w-5 h-5" alt="social">
+                </a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#1E5DBC]">
+                    <img src="assets/images/icons/linkedin.svg" class="w-5 h-5" alt="social">
+                </a>
+            </div>
+        </div>
+    </form>
+    <footer class="flex flex-col bg-white mt-auto pt-[50px]">
+        <div class="flex flex-col container-responsive py-10 gap-10">
+            <div class="flex flex-col md:flex-row gap-10 justify-between">
+                <div class="flex flex-col gap-7 max-w-[330px]">
+                    <img src="assets/images/logos/Logotipo - Versare - Marrom.png" class="w-[150px] h-auto" alt="logo">
+                    <p class="text-sm leading-[28px]">Sua imobiliária de confiança para encontrar o imóvel dos seus sonhos. Estamos no mercado há mais de 15 anos com compromisso e seriedade.</p>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between flex-1 gap-10">
+                    <div class="flex flex-col gap-5">
+                        <p class="font-bold text-lg">Imóveis</p>
+                        <div class="flex flex-col gap-[10px]">
+                            <a href="#">Apartamentos</a>
+                            <a href="#">Casas</a>
+                            <a href="#">Comerciais</a>
+                            <a href="#">Terrenos</a>
+                            <a href="#">Lançamentos</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-5">
+                        <p class="font-bold text-lg">Sobre Nós</p>
+                        <div class="flex flex-col gap-[10px]">
+                            <a href="#">Quem Somos</a>
+                            <a href="#">Nossa Equipe</a>
+                            <a href="#">Depoimentos</a>
+                            <a href="#">Parceiros</a>
+                            <a href="#">Trabalhe Conosco</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-5">
+                        <p class="font-bold text-lg">Contato</p>
+                        <div class="flex flex-col gap-[10px]">
+                            <a href="#">Fale Conosco</a>
+                            <a href="#">Atendimento</a>
+                            <a href="#">Localização</a>
+                            <a href="#">FAQ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-[#F6F5FD]">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
+                <div class="flex gap-[10px]">
+                    <a href="#">Termos & Condições</a>
+                    <a href="#">Política de privacidade</a>
+                </div>
+                <p>2024 FirstHome. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenuDropdown = document.getElementById('mobileMenuDropdown');
+            
+            menuButton.addEventListener('click', function() {
+                mobileMenuDropdown.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

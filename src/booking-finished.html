@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <nav class="bg-white">
+        <div class="nav-container">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="index.html">
+                    <img src="assets/images/logos/logo.svg" alt="logo">
+                </a>
+                <button class="mobile-menu-button" id="menuButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+            <ul class="nav-menu" id="mobileMenu">
+                <li>
+                    <a href="">Imóveis</a>
+                </li>
+                <li>
+                    <a href="">Lançamentos</a>
+                </li>
+                <li>
+                    <a href="">Venda</a>
+                </li>
+                <li>
+                    <a href="">Aluguel</a>
+                </li>
+                <li>
+                    <a href="booking.html">Contato</a>
+                </li>
+            </ul>
+            <div class="hidden md:block">
+                <a href="booking.html" class="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5">
+                    <img src="assets/images/icons/call.svg" class="w-6 h-6" alt="icon">
+                    <span class="font-semibold">Fale Conosco</span>
+                </a>
+            </div>
+        </div>
+        <!-- Menu Mobile -->
+        <div class="mobile-menu hidden" id="mobileMenuDropdown">
+            <a href="">Imóveis</a>
+            <a href="">Lançamentos</a>
+            <a href="">Venda</a>
+            <a href="">Aluguel</a>
+            <a href="booking.html">Contato</a>
+            <a href="booking.html" class="flex items-center justify-center gap-[10px] rounded-full border border-[#000929] py-3 px-5 mt-4 w-[80%]">
+                <img src="assets/images/icons/call.svg" class="w-6 h-6" alt="icon">
+                <span class="font-semibold">Fale Conosco</span>
+            </a>
+        </div>
+    </nav>
+    <section class="container-responsive flex flex-col items-center justify-center gap-10 py-[100px]">
+        <img src="assets/images/icons/tick-circle.svg" class="w-[180px] h-[180px]" alt="icon">
+        <h1 class="font-bold text-[32px] leading-[48px] text-center">Sua Mensagem foi Enviada com Sucesso!</h1>
+        <p class="text-center max-w-[530px]">Agradecemos pelo seu contato. Um dos nossos consultores da Versare Imóveis entrará em contato com você em breve através do e-mail ou telefone informado.</p>
+        <a href="index.html" class="btn btn-primary btn-lg">
+            Voltar para a Página Inicial
+        </a>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenuDropdown = document.getElementById('mobileMenuDropdown');
+            
+            menuButton.addEventListener('click', function() {
+                mobileMenuDropdown.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

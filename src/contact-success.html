@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-[#f7f7fd]">
+    <nav class="bg-white">
+        <div class="nav-container">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="index.html">
+                    <img src="assets/images/logos/logo.svg" alt="logo">
+                </a>
+                <button class="mobile-menu-button" id="menuButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+            <ul class="nav-menu" id="mobileMenu">
+                <li>
+                    <a href="index.html">Imóveis</a>
+                </li>
+                <li>
+                    <a href="lancamentos.html">Lançamentos</a>
+                </li>
+                <li>
+                    <a href="venda.html">Venda</a>
+                </li>
+                <li>
+                    <a href="aluguel.html">Aluguel</a>
+                </li>
+                <li>
+                    <a href="quem-somos.html">Quem Somos</a>
+                </li>
+            </ul>
+            <div class="hidden md:block">
+                <a href="booking.html" class="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5">
+                    <img src="assets/images/icons/call.svg" class="w-6 h-6" alt="icon">
+                    <span class="font-semibold">Fale Conosco</span>
+                </a>
+            </div>
+        </div>
+        <!-- Menu Mobile -->
+        <div class="mobile-menu hidden" id="mobileMenuDropdown">
+            <a href="index.html">Imóveis</a>
+            <a href="lancamentos.html">Lançamentos</a>
+            <a href="venda.html">Venda</a>
+            <a href="aluguel.html">Aluguel</a>
+            <a href="quem-somos.html">Quem Somos</a>
+            <a href="booking.html" class="flex items-center justify-center gap-[10px] rounded-full border border-[#000929] py-3 px-5 mt-4 w-[80%]">
+                <img src="assets/images/icons/call.svg" class="w-6 h-6" alt="icon">
+                <span class="font-semibold">Fale Conosco</span>
+            </a>
+        </div>
+    </nav>
+
+    <section class="container-responsive flex flex-col items-center justify-center gap-12 py-[120px]">
+        <img src="assets/images/icons/tick-circle.svg" class="w-[200px] h-[200px]" alt="icon">
+        <h1 class="font-bold text-[36px] leading-[54px] text-center">Sua Mensagem foi Enviada com Sucesso!</h1>
+        <p class="text-center max-w-[600px] text-lg leading-[30px]">Agradecemos pelo seu contato. Um dos nossos consultores da Versare Imóveis entrará em contato com você em breve através do e-mail ou telefone informado.</p>
+        <a href="index.html" class="rounded-full py-[18px] px-[32px] bg-[#1E5DBC] text-white font-bold text-lg mt-4">
+            Voltar para a Página Inicial
+        </a>
+    </section>
+
+    <footer class="flex flex-col bg-white mt-auto pt-[50px]">
+        <div class="flex flex-col container-responsive py-10 gap-10">
+            <div class="flex flex-col md:flex-row gap-10 justify-between">
+                <div class="flex flex-col gap-7 max-w-[330px]">
+                    <img src="assets/images/logos/logo.svg" class="w-[178px] h-[42px]" alt="logo">
+                    <p class="text-sm leading-[28px]">Versare Imóveis: Transformando sonhos em realidade desde 2005. Trabalhamos com excelência e dedicação para encontrar o imóvel perfeito para você.</p>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between flex-1 gap-10">
+                    <div class="flex flex-col gap-5">
+                        <p class="font-bold text-lg">Imóveis</p>
+                        <div class="flex flex-col gap-[10px]">
+                            <a href="#">Apartamentos</a>
+                            <a href="#">Casas</a>
+                            <a href="#">Comerciais</a>
+                            <a href="#">Terrenos</a>
+                            <a href="#">Lançamentos</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-5">
+                        <p class="font-bold text-lg">Sobre Nós</p>
+                        <div class="flex flex-col gap-[10px]">
+                            <a href="quem-somos.html">Quem Somos</a>
+                            <a href="quem-somos.html#equipe">Nossa Equipe</a>
+                            <a href="#">Depoimentos</a>
+                            <a href="#">Parceiros</a>
+                            <a href="quem-somos.html#trabalhe">Trabalhe Conosco</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-5">
+                        <p class="font-bold text-lg">Contato</p>
+                        <div class="flex flex-col gap-[10px]">
+                            <a href="booking.html">Fale Conosco</a>
+                            <a href="booking.html">Atendimento</a>
+                            <a href="#">Localização</a>
+                            <a href="#">FAQ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-[#F6F5FD]">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
+                <div class="flex gap-[10px]">
+                    <a href="#">Termos & Condições</a>
+                    <a href="#">Política de privacidade</a>
+                </div>
+                <p>2024 Versare Imóveis. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenuDropdown = document.getElementById('mobileMenuDropdown');
+            
+            menuButton.addEventListener('click', function() {
+                mobileMenuDropdown.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html> 

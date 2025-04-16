@@ -1,0 +1,407 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>Detalhes do Contato | Painel Administrativo</title>
+</head>
+<body class="bg-[#F7F7FD]">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-[#E0DEF7] shadow-md hidden md:block">
+            <div class="p-4 border-b border-[#E0DEF7]">
+                <a href="../index.html" target="_blank" class="block">
+                    <img src="../assets/images/logos/logo.svg" alt="First Office" class="w-[130px]">
+                </a>
+                <p class="mt-2 text-sm text-gray-500">Painel Administrativo</p>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="index.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="imoveis.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            Imóveis
+                        </a>
+                    </li>
+                    <li>
+                        <a href="lancamentos.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            Lançamentos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contatos.html" class="flex items-center p-3 bg-[#1E5DBC] text-white rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            Mensagens
+                        </a>
+                    </li>
+                    <li>
+                        <a href="configuracoes.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Configurações
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="flex-1 flex flex-col">
+            <!-- Top navbar -->
+            <header class="bg-white shadow-sm border-b border-[#E0DEF7] p-4">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-4">
+                        <button class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                        <h1 class="text-xl font-semibold text-gray-800">Detalhes do Contato</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <button class="p-2 rounded-full bg-gray-100 hover:bg-gray-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="mr-2 text-sm font-medium text-gray-700">Admin</span>
+                            <img src="../assets/images/icons/avatar-placeholder.svg" alt="Avatar" class="h-8 w-8 rounded-full">
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main content -->
+            <main class="flex-1 p-6">
+                <div class="mb-6 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Detalhes da Mensagem</h2>
+                        <p id="contact-date" class="text-gray-600">Recebido em: -</p>
+                    </div>
+                    <div>
+                        <a href="contatos.html" class="btn btn-secondary btn-md">Voltar</a>
+                    </div>
+                </div>
+                
+                <!-- Contact details -->
+                <div class="bg-white rounded-lg shadow p-6 border border-[#E0DEF7] mb-6" id="contact-details">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Informações do Contato</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <p class="text-sm text-gray-500">Nome</p>
+                                <p id="contact-name" class="font-medium">-</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Email</p>
+                                <p id="contact-email" class="font-medium">-</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Telefone</p>
+                                <p id="contact-phone" class="font-medium">-</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Status</p>
+                                <p id="contact-status" class="font-medium">-</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Imóvel de Interesse</h3>
+                        <div id="property-details">
+                            <div class="flex items-center justify-between">
+                                <p id="property-title" class="font-medium">-</p>
+                                <a id="property-link" href="#" class="text-[#1E5DBC] text-sm">Ver Imóvel</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Mensagem</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p id="contact-message" class="whitespace-pre-line">-</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Responder</h3>
+                        <form id="replyForm">
+                            <input type="hidden" id="contact-id" name="contact_id">
+                            <div class="mb-4">
+                                <label for="subject" class="block font-medium mb-2">Assunto</label>
+                                <input type="text" id="subject" name="subject" placeholder="Ex: Resposta sobre seu interesse no imóvel" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                            </div>
+                            <div class="mb-4">
+                                <label for="reply" class="block font-medium mb-2">Mensagem</label>
+                                <textarea id="reply" name="reply" rows="6" placeholder="Digite sua resposta aqui..." class="rounded-[10px] border border-[#E0DEF7] p-3 w-full"></textarea>
+                            </div>
+                            <div class="flex justify-between">
+                                <div>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" id="mark_replied" name="mark_replied" checked class="mr-2">
+                                        <span>Marcar como respondido</span>
+                                    </label>
+                                </div>
+                                <div class="flex space-x-4">
+                                    <button type="button" id="archiveButton" class="btn btn-secondary btn-md">Arquivar</button>
+                                    <button type="submit" class="btn btn-primary btn-md whitespace-nowrap bg-[#1E5DBC]">Enviar Resposta</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div id="loading" class="flex items-center justify-center py-8">
+                    <svg class="animate-spin -ml-1 mr-3 h-8 w-8 text-[#1E5DBC]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span class="text-lg">Carregando...</span>
+                </div>
+                
+                <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                    <p>Erro ao carregar os detalhes do contato. Por favor, tente novamente mais tarde.</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../assets/js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuButton = document.querySelector('.md\\:hidden');
+            const sidebar = document.querySelector('aside');
+            
+            menuButton.addEventListener('click', function() {
+                sidebar.classList.toggle('hidden');
+                sidebar.classList.toggle('md:block');
+                sidebar.classList.toggle('fixed');
+                sidebar.classList.toggle('inset-0');
+                sidebar.classList.toggle('z-50');
+            });
+            
+            // Obter o ID do contato da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const contactId = urlParams.get('id');
+            
+            if (!contactId) {
+                window.location.href = 'contatos.html';
+                return;
+            }
+            
+            // Elementos da página
+            const contactDetails = document.getElementById('contact-details');
+            const loading = document.getElementById('loading');
+            const errorMessage = document.getElementById('error-message');
+            
+            contactDetails.style.display = 'none';
+            loading.style.display = 'flex';
+            errorMessage.style.display = 'none';
+            
+            // Carregar detalhes do contato
+            fetch(`${API_BASE_URL}/admin/contacts/${contactId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao carregar detalhes do contato');
+                    }
+                    return response.json();
+                })
+                .then(contact => {
+                    // Preencher os detalhes do contato
+                    document.getElementById('contact-name').textContent = contact.name;
+                    document.getElementById('contact-email').textContent = contact.email;
+                    document.getElementById('contact-phone').textContent = contact.phone;
+                    document.getElementById('contact-message').textContent = contact.message;
+                    document.getElementById('contact-id').value = contact.id;
+                    
+                    // Formatar data
+                    const date = new Date(contact.created_at);
+                    document.getElementById('contact-date').textContent = `Recebido em: ${date.toLocaleDateString('pt-BR')} às ${date.toLocaleTimeString('pt-BR')}`;
+                    
+                    // Status com cores
+                    let statusText = '';
+                    let statusClass = '';
+                    
+                    switch (contact.status) {
+                        case 'novo':
+                            statusText = 'Novo';
+                            statusClass = 'bg-blue-100 text-blue-800';
+                            break;
+                        case 'respondido':
+                            statusText = 'Respondido';
+                            statusClass = 'bg-green-100 text-green-800';
+                            break;
+                        case 'em_andamento':
+                            statusText = 'Em Andamento';
+                            statusClass = 'bg-yellow-100 text-yellow-800';
+                            break;
+                        case 'arquivado':
+                            statusText = 'Arquivado';
+                            statusClass = 'bg-gray-100 text-gray-800';
+                            break;
+                        default:
+                            statusText = contact.status;
+                    }
+                    
+                    document.getElementById('contact-status').innerHTML = `<span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${statusClass}">${statusText}</span>`;
+                    
+                    // Preencher detalhes do imóvel, se houver
+                    if (contact.property_id && contact.property_title) {
+                        document.getElementById('property-title').textContent = contact.property_title;
+                        document.getElementById('property-link').href = `../imovel.html?id=${contact.property_id}`;
+                    } else {
+                        document.getElementById('property-details').innerHTML = '<p class="text-gray-500">Contato geral, sem imóvel específico.</p>';
+                    }
+                    
+                    // Configurar formulário de resposta
+                    const replyForm = document.getElementById('replyForm');
+                    if (replyForm) {
+                        replyForm.addEventListener('submit', function(event) {
+                            event.preventDefault();
+                            
+                            const subject = document.getElementById('subject').value;
+                            const reply = document.getElementById('reply').value;
+                            const markReplied = document.getElementById('mark_replied').checked;
+                            
+                            if (!reply) {
+                                showAlert('Por favor, preencha a mensagem de resposta', 'error');
+                                return;
+                            }
+                            
+                            // Desabilitar o botão de envio
+                            const submitButton = replyForm.querySelector('button[type="submit"]');
+                            if (submitButton) {
+                                submitButton.disabled = true;
+                                submitButton.textContent = 'Enviando...';
+                            }
+                            
+                            // Enviar resposta para a API
+                            fetch(`${API_BASE_URL}/admin/contacts/${contactId}/reply`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    subject: subject || `Re: Interesse em imóvel - ${contact.property_title || 'Contato geral'}`,
+                                    message: reply,
+                                    mark_replied: markReplied
+                                })
+                            })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Erro ao enviar resposta');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    showAlert('Resposta enviada com sucesso', 'success');
+                                    
+                                    // Atualizar status na página
+                                    if (markReplied) {
+                                        document.getElementById('contact-status').innerHTML = '<span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Respondido</span>';
+                                    }
+                                    
+                                    // Limpar formulário
+                                    document.getElementById('subject').value = '';
+                                    document.getElementById('reply').value = '';
+                                    
+                                    // Reabilitar o botão
+                                    if (submitButton) {
+                                        submitButton.disabled = false;
+                                        submitButton.textContent = 'Enviar Resposta';
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Erro ao enviar resposta:', error);
+                                    showAlert('Erro ao enviar resposta: ' + error.message, 'error');
+                                    
+                                    // Reabilitar o botão
+                                    if (submitButton) {
+                                        submitButton.disabled = false;
+                                        submitButton.textContent = 'Enviar Resposta';
+                                    }
+                                });
+                        });
+                    }
+                    
+                    // Configurar botão de arquivar
+                    const archiveButton = document.getElementById('archiveButton');
+                    if (archiveButton) {
+                        archiveButton.addEventListener('click', function() {
+                            if (!confirm('Tem certeza que deseja arquivar esta mensagem?')) {
+                                return;
+                            }
+                            
+                            // Desabilitar o botão
+                            archiveButton.disabled = true;
+                            archiveButton.textContent = 'Arquivando...';
+                            
+                            // Enviar solicitação para a API
+                            fetch(`${API_BASE_URL}/admin/contacts/${contactId}/archive`, {
+                                method: 'PUT'
+                            })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Erro ao arquivar mensagem');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    showAlert('Mensagem arquivada com sucesso', 'success');
+                                    
+                                    // Atualizar status na página
+                                    document.getElementById('contact-status').innerHTML = '<span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">Arquivado</span>';
+                                    
+                                    // Reabilitar o botão
+                                    archiveButton.disabled = false;
+                                    archiveButton.textContent = 'Arquivar';
+                                })
+                                .catch(error => {
+                                    console.error('Erro ao arquivar mensagem:', error);
+                                    showAlert('Erro ao arquivar mensagem: ' + error.message, 'error');
+                                    
+                                    // Reabilitar o botão
+                                    archiveButton.disabled = false;
+                                    archiveButton.textContent = 'Arquivar';
+                                });
+                        });
+                    }
+                    
+                    // Exibir os detalhes e ocultar loading
+                    contactDetails.style.display = 'block';
+                    loading.style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar detalhes do contato:', error);
+                    
+                    // Exibir mensagem de erro
+                    errorMessage.style.display = 'block';
+                    loading.style.display = 'none';
+                });
+        });
+    </script>
+</body>
+</html> 

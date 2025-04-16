@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <nav class="bg-white">
+        <div class="nav-container">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="index.html">
+                    <img src="assets/images/logos/Logotipo - Versare - Marrom.png" alt="logo" class="w-[130px] h-auto">
+                </a>
+                <button class="mobile-menu-button" id="menuButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+            <ul class="nav-menu" id="mobileMenu">
+                <li>
+                    <a href="index.html">Imóveis</a>
+                </li>
+                <li>
+                    <a href="lancamentos.html">Lançamentos</a>
+                </li>
+                <li>
+                    <a href="venda.html" class="font-bold">Venda</a>
+                </li>
+                <li>
+                    <a href="aluguel.html">Aluguel</a>
+                </li>
+                <li>
+                    <a href="quem-somos.html">Quem Somos</a>
+                </li>
+            </ul>
+            <div class="hidden md:block">
+                <a href="booking.html" class="btn-nav">
+                    <img src="assets/images/icons/call.svg" class="w-6 h-6 icon" alt="icon">
+                    <span class="font-semibold">Fale Conosco</span>
+                </a>
+            </div>
+        </div>
+        <!-- Menu Mobile -->
+        <div class="mobile-menu hidden" id="mobileMenuDropdown">
+            <a href="index.html">Imóveis</a>
+            <a href="lancamentos.html">Lançamentos</a>
+            <a href="venda.html" class="font-bold">Venda</a>
+            <a href="aluguel.html">Aluguel</a>
+            <a href="quem-somos.html">Quem Somos</a>
+            <a href="booking.html" class="flex items-center justify-center gap-[10px] rounded-full border border-[#000929] py-3 px-5 mt-4 w-[80%]">
+                <img src="assets/images/icons/call.svg" class="w-6 h-6 icon" alt="icon">
+                <span class="font-semibold">Fale Conosco</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="relative w-full h-[350px] flex items-center overflow-hidden">
+        <h1 class="text-center mx-auto font-extrabold text-[40px] leading-[60px] text-white mb-5 z-20">Imóveis à Venda</h1>
+        <div class="absolute w-full h-full bg-[linear-gradient(180deg,_rgba(0,0,0,0)_0%,#000000_91.83%)] z-10"></div>
+        <img src="assets/images/thumbnails/thumbnail-details-2.png" class="absolute w-full h-full object-cover" alt="Banner de venda">
+    </div>
+
+    <!-- Barra de busca flutuante -->
+    <div class="relative container-responsive -mt-[70px] mb-[80px] z-30">
+        <div class="flex flex-col rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white shadow-lg">
+            <h2 class="font-bold text-[24px] leading-[36px]">Encontre seu Imóvel Ideal</h2>
+            <form class="grid grid-cols-1 md:grid-cols-3 gap-[20px]">
+                <div class="flex flex-col gap-[10px]">
+                    <label class="font-semibold">Localização</label>
+                    <select name="location" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                        <option value="">Todas as regiões</option>
+                        <option value="centro">Centro</option>
+                        <option value="zona-sul">Zona Sul</option>
+                        <option value="zona-norte">Zona Norte</option>
+                        <option value="zona-leste">Zona Leste</option>
+                        <option value="zona-oeste">Zona Oeste</option>
+                    </select>
+                </div>
+                <div class="flex flex-col gap-[10px]">
+                    <label class="font-semibold">Tipo de Imóvel</label>
+                    <select name="propertyType" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                        <option value="">Todos os tipos</option>
+                        <option value="apartamento">Apartamento</option>
+                        <option value="casa">Casa</option>
+                        <option value="comercial">Comercial</option>
+                        <option value="lote">Lote/Terreno</option>
+                        <option value="sala">Sala Comercial</option>
+                    </select>
+                </div>
+                <div class="flex flex-col gap-[10px]">
+                    <label class="font-semibold">Faixa de Preço</label>
+                    <select name="priceRange" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                        <option value="">Qualquer valor</option>
+                        <option value="ate-500k">Até R$ 500.000</option>
+                        <option value="500k-1m">R$ 500.000 a R$ 1.000.000</option>
+                        <option value="1m-2m">R$ 1.000.000 a R$ 2.000.000</option>
+                        <option value="acima-2m">Acima de R$ 2.000.000</option>
+                    </select>
+                </div>
+                <div class="flex flex-col gap-[10px]">
+                    <label class="font-semibold">Dormitórios</label>
+                    <select name="bedrooms" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                        <option value="">Qualquer</option>
+                        <option value="1-dorm">1 dormitório</option>
+                        <option value="2-dorm">2 dormitórios</option>
+                        <option value="3-dorm">3 dormitórios</option>
+                        <option value="4+-dorm">4+ dormitórios</option>
+                    </select>
+                </div>
+                <div class="flex flex-col gap-[10px]">
+                    <label class="font-semibold">Área</label>
+                    <select name="area" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                        <option value="">Qualquer</option>
+                        <option value="ate-50">Até 50m²</option>
+                        <option value="50-100">50m² a 100m²</option>
+                        <option value="100-200">100m² a 200m²</option>
+                        <option value="acima-200">Acima de 200m²</option>
+                    </select>
+                </div>
+                <div class="flex flex-col gap-[10px]">
+                    <label class="font-semibold">Vagas</label>
+                    <select name="parking" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                        <option value="">Qualquer</option>
+                        <option value="1-vaga">1 vaga</option>
+                        <option value="2-vagas">2 vagas</option>
+                        <option value="3+-vagas">3+ vagas</option>
+                    </select>
+                </div>
+                <div class="md:col-span-3">
+                    <button type="submit" class="btn btn-primary btn-lg w-full">
+                        <span>Buscar Imóveis</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <section class="container-responsive mb-[100px]">
+        <h2 class="font-bold text-[32px] leading-[48px] text-center mb-[50px]">Imóveis à Venda</h2>
+        
+        <div class="properties-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
+            <!-- Os imóveis serão carregados dinamicamente aqui -->
+            <div class="text-center w-full col-span-3">Carregando imóveis...</div>
+        </div>
+        
+        <!-- Paginação -->
+        <div class="flex items-center justify-center gap-2 mt-[50px]">
+            <a href="#" class="flex items-center justify-center w-10 h-10 rounded-full bg-[#1E5DBC] text-white font-bold">1</a>
+            <a href="#" class="flex items-center justify-center w-10 h-10 rounded-full border border-[#E0DEF7] font-bold">2</a>
+            <a href="#" class="flex items-center justify-center w-10 h-10 rounded-full border border-[#E0DEF7] font-bold">3</a>
+            <span class="mx-2">...</span>
+            <a href="#" class="flex items-center justify-center w-10 h-10 rounded-full border border-[#E0DEF7] font-bold">10</a>
+        </div>
+    </section>
+
+    <footer class="flex flex-col bg-white mt-auto pt-[50px]">
+        <div class="flex flex-col container-responsive py-10 gap-10">
+            <div class="flex flex-col md:flex-row gap-10 justify-between">
+                <div class="flex flex-col gap-7 max-w-[330px]">
+                    <img src="assets/images/logos/Logotipo - Versare - Marrom.png" class="w-[150px] h-auto" alt="logo">
+                    <p class="text-sm leading-[28px]">Versare Imóveis: Transformando sonhos em realidade desde 2005. Trabalhamos com excelência e dedicação para encontrar o imóvel perfeito para você.</p>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between flex-1 gap-10">
+                    <div class="flex flex-col gap-5">
+                        <p class="font-bold text-lg">Imóveis</p>
+                        <div class="flex flex-col gap-[10px]">
+                            <a href="#">Apartamentos</a>
+                            <a href="#">Casas</a>
+                            <a href="#">Comerciais</a>
+                            <a href="#">Terrenos</a>
+                            <a href="lancamentos.html">Lançamentos</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-5">
+                        <p class="font-bold text-lg">Sobre Nós</p>
+                        <div class="flex flex-col gap-[10px]">
+                            <a href="quem-somos.html">Quem Somos</a>
+                            <a href="quem-somos.html#equipe">Nossa Equipe</a>
+                            <a href="#">Depoimentos</a>
+                            <a href="#">Parceiros</a>
+                            <a href="quem-somos.html#trabalhe">Trabalhe Conosco</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-5">
+                        <p class="font-bold text-lg">Contato</p>
+                        <div class="flex flex-col gap-[10px]">
+                            <a href="booking.html">Fale Conosco</a>
+                            <a href="booking.html">Atendimento</a>
+                            <a href="#">Localização</a>
+                            <a href="#">FAQ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-[#F6F5FD]">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
+                <div class="flex gap-[10px]">
+                    <a href="#">Termos & Condições</a>
+                    <a href="#">Política de privacidade</a>
+                </div>
+                <p>2024 Versare Imóveis. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenuDropdown = document.getElementById('mobileMenuDropdown');
+            
+            menuButton.addEventListener('click', function() {
+                mobileMenuDropdown.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html> 

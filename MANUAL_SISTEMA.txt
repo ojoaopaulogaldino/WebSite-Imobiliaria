@@ -1,0 +1,226 @@
+# MANUAL DO SISTEMA FIRST OFFICE - IMOBILIÁRIA
+
+## VISÃO GERAL DO SISTEMA
+
+O First Office é um sistema de gerenciamento imobiliário composto por duas partes principais:
+1. **Área pública** - Site para visualização de imóveis por visitantes
+2. **Área administrativa** - Painel para gerenciamento de imóveis, contatos e configurações
+
+O sistema utiliza uma arquitetura monolítica baseada em Node.js (backend) e JavaScript vanilla + HTML/CSS (frontend).
+
+## TECNOLOGIAS UTILIZADAS
+
+### Backend
+- **Node.js + Express**: Para servidor HTTP e API RESTful
+- **SQLite**: Banco de dados relacional de arquivo único
+- **bcryptjs**: Para criptografia de senhas
+- **multer**: Para upload de arquivos
+- **body-parser**: Para processamento de requisições JSON
+
+### Frontend
+- **JavaScript Vanilla**: Lógica do cliente sem frameworks
+- **TailwindCSS**: Framework CSS para estilização
+- **HTML5**: Estrutura de páginas
+
+## ESTRUTURA DE ARQUIVOS
+
+```
+FirstOffice-main/
+├── server.js                  # Arquivo principal do servidor Node.js
+├── database.db                # Banco de dados SQLite
+├── package.json               # Dependências e scripts
+├── src/                       # Código-fonte do frontend
+│   ├── admin/                 # Área administrativa
+│   │   ├── index.html         # Dashboard administrativo
+│   │   ├── imoveis.html       # Gerenciamento de imóveis
+│   │   ├── contatos.html      # Gerenciamento de contatos
+│   │   └── configuracoes.html # Configurações do sistema
+│   ├── assets/
+│   │   ├── images/            # Imagens estáticas
+│   │   │   └── uploads/       # Imagens enviadas pelos usuários
+│   │   ├── js/
+│   │   │   ├── main.js        # JavaScript principal do site
+│   │   │   ├── admin.js       # JavaScript principal do admin
+│   │   │   └── modules/       # Módulos JavaScript organizados
+│   ├── index.html             # Página inicial do site
+│   ├── venda.html             # Página de imóveis à venda
+│   ├── aluguel.html           # Página de imóveis para aluguel
+│   ├── lancamentos.html       # Página de lançamentos imobiliários
+│   ├── details.html           # Página de detalhes do imóvel
+│   └── output.css             # CSS compilado pelo TailwindCSS
+```
+
+## COMPONENTES DO BACKEND (server.js)
+
+### Inicialização e Configuração
+
+O arquivo `server.js` contém toda a lógica do backend, incluindo:
+- Configuração do Express
+- Conexão com o banco de dados SQLite
+- Definição de middleware (CORS, bodyParser)
+- Configuração de upload de arquivos com multer
+- Criação das tabelas no banco de dados (função `initializeDatabase()`)
+- Dados de exemplo iniciais (função `insertSampleData()`)
+
+### Rotas da API
+
+#### Rotas Públicas
+
+```
+GET  /api/properties/featured     # Lista imóveis em destaque
+GET  /api/properties              # Lista todos os imóveis (aceita filtros)
+GET  /api/properties/:id          # Detalhes de um imóvel específico
+POST /api/contacts                # Envia um contato/mensagem
+GET  /api/settings                # Obtém configurações públicas do site
+```
+
+#### Rotas Administrativas
+
+```
+POST /api/auth/login              # Autenticação de usuário admin
+GET  /api/admin/properties        # Lista todos os imóveis (admin)
+POST /api/admin/properties        # Adiciona novo imóvel
+PUT  /api/admin/properties/:id    # Atualiza um imóvel existente
+DEL  /api/admin/properties/:id    # Remove um imóvel
+POST /api/admin/properties/:id/images  # Faz upload de imagens para um imóvel
+POST /api/admin/properties/:id/videos  # Adiciona URLs de vídeos para um imóvel
+DEL  /api/admin/properties/:id/videos/:videoId  # Remove um vídeo
+GET  /api/admin/contacts          # Lista todos os contatos recebidos
+PUT  /api/admin/contacts/:id      # Atualiza status de um contato
+GET  /api/admin/settings          # Obtém todas as configurações
+POST /api/admin/settings          # Salva configurações
+```
+
+### Banco de Dados
+
+O sistema utiliza SQLite com as seguintes tabelas:
+
+- **users**: Usuários administrativos
+- **properties**: Informações básicas dos imóveis
+- **property_amenities**: Comodidades dos imóveis (relação N:1)
+- **property_images**: Imagens dos imóveis (relação N:1)
+- **property_videos**: Vídeos dos imóveis (relação N:1)
+- **contacts**: Mensagens de contato recebidas
+- **settings**: Configurações do sistema (pares chave-valor)
+
+## COMPONENTES DO FRONTEND
+
+### Área Pública (src/)
+
+#### Páginas Principais
+
+- **index.html**: Página inicial com imóveis em destaque
+- **venda.html**: Listagem de imóveis à venda
+- **aluguel.html**: Listagem de imóveis para aluguel
+- **lancamentos.html**: Listagem de lançamentos imobiliários
+- **details.html**: Página detalhada de um imóvel específico
+- **booking.html**: Página de contato
+
+#### JavaScript (src/assets/js/)
+
+- **main.js**: Arquivo principal de JavaScript para o site público
+  - `loadFeaturedProperties()`: Carrega imóveis em destaque
+  - `loadPropertiesByType()`: Carrega imóveis por tipo (venda/aluguel/lançamento)
+  - `loadPropertyDetails()`: Carrega detalhes de um imóvel específico
+  - `displayProperties()`: Exibe imóveis no grid com paginação
+  - `applyFilters()`: Aplica filtros de busca aos imóveis
+  - `updatePagination()`: Controla a paginação de resultados
+  - `handleContactFormSubmit()`: Processa envio de formulários de contato
+
+### Área Administrativa (src/admin/)
+
+#### Páginas Administrativas
+
+- **index.html**: Dashboard com resumo do sistema
+- **imoveis.html**: CRUD de imóveis
+- **contatos.html**: Gerenciamento de contatos recebidos
+- **configuracoes.html**: Configurações do sistema
+
+#### JavaScript (src/assets/js/)
+
+- **admin.js**: Arquivo principal para a área administrativa
+  - Gerenciamento de autenticação
+  - Carregamento de dados no dashboard
+  - Funcionalidades administrativas gerais
+
+- **modules/properties.js**: Gerenciamento de imóveis
+  - Listar, adicionar, editar e excluir imóveis
+  - Upload de imagens
+  - Gerenciamento de comodidades
+
+- **modules/contacts.js**: Gerenciamento de contatos
+  - Listar e atualizar status de contatos
+  - Filtrar contatos por propriedades
+
+- **modules/settings.js**: Gerenciamento de configurações
+  - Salvar e carregar configurações do sistema
+
+- **modules/video-manager.js**: Gerenciamento de vídeos
+  - Adicionar e remover vídeos de imóveis
+
+- **modules/image-manager.js**: Gerenciamento de imagens
+  - Upload e exclusão de imagens
+  - Definição de imagem principal
+
+## FLUXOS PRINCIPAIS DO SISTEMA
+
+### 1. Listagem de Imóveis
+
+1. Usuário acessa uma página de categoria (venda, aluguel, lançamentos)
+2. Frontend faz requisição para `/api/properties` com filtros apropriados
+3. Backend consulta banco de dados e retorna imóveis filtrados
+4. Frontend renderiza grid de imóveis com paginação
+5. Usuário pode aplicar filtros adicionais (preço, quartos, etc.)
+
+### 2. Visualização de Detalhes
+
+1. Usuário clica em um imóvel no grid
+2. Frontend redireciona para `details.html?id=X`
+3. Página carrega e faz requisição para `/api/properties/:id`
+4. Backend retorna dados completos do imóvel (incluindo amenidades, imagens, vídeos)
+5. Frontend renderiza página de detalhes com carrossel de imagens/vídeos
+
+### 3. Contato
+
+1. Usuário preenche formulário de contato
+2. Frontend envia dados para `/api/contacts`
+3. Backend salva mensagem no banco de dados
+4. Frontend redireciona para WhatsApp ou exibe mensagem de sucesso
+
+### 4. Administração de Imóveis
+
+1. Administrador acessa área administrativa
+2. Login via `/api/auth/login`
+3. Sistema carrega painel de administração
+4. Administrador pode:
+   - Listar, adicionar, editar e excluir imóveis
+   - Gerenciar imagens e vídeos
+   - Responder contatos
+   - Alterar configurações do sistema
+
+## PONTOS DE ATENÇÃO PARA DESENVOLVEDORES
+
+### Autenticação
+
+- Sistema usa autenticação simples sem tokens JWT
+- Credenciais padrão: admin/admin123 (alterar em produção)
+- Não há proteção contra força bruta
+
+### Gestão de Arquivos
+
+- Imagens são armazenadas em `src/assets/images/uploads/`
+- Os vídeos são apenas URLs externas (não hospedados no sistema)
+- Sem controle de tamanho máximo ou tipo de arquivo
+
+### Banco de Dados
+
+- SQLite: banco de dados de arquivo único (`database.db`)
+- Auto-inicialização com dados de exemplo
+- Considerar migração para PostgreSQL/MySQL para maior escala
+
+### Deploy e Ambiente
+
+- Configuração de porta via variável de ambiente `PORT` (padrão: 3000)
+- Não há separação de ambientes (dev/prod)
+- Necessário proxy reverso para produção (nginx/apache)
+

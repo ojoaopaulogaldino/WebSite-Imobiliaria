@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <nav class="bg-white">
+        <div class="nav-container">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="index.html">
+                    <img src="assets/images/logos/logo.svg" alt="logo">
+                </a>
+                <button class="mobile-menu-button" id="menuButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+            <ul class="nav-menu" id="mobileMenu">
+                <li>
+                    <a href="index.html">Imóveis</a>
+                </li>
+                <li>
+                    <a href="">Lançamentos</a>
+                </li>
+                <li>
+                    <a href="">Venda</a>
+                </li>
+                <li>
+                    <a href="">Aluguel</a>
+                </li>
+                <li>
+                    <a href="view-booking-details.html" class="font-bold">Meus Pedidos</a>
+                </li>
+            </ul>
+            <div class="hidden md:block">
+                <a href="booking.html" class="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5">
+                    <img src="assets/images/icons/call.svg" class="w-6 h-6" alt="icon">
+                    <span class="font-semibold">Fale Conosco</span>
+                </a>
+            </div>
+        </div>
+        <!-- Menu Mobile -->
+        <div class="mobile-menu hidden" id="mobileMenuDropdown">
+            <a href="index.html">Imóveis</a>
+            <a href="">Lançamentos</a>
+            <a href="">Venda</a>
+            <a href="">Aluguel</a>
+            <a href="view-booking-details.html" class="font-bold">Meus Pedidos</a>
+            <a href="booking.html" class="flex items-center justify-center gap-[10px] rounded-full border border-[#000929] py-3 px-5 mt-4 w-[80%]">
+                <img src="assets/images/icons/call.svg" class="w-6 h-6" alt="icon">
+                <span class="font-semibold">Fale Conosco</span>
+            </a>
+        </div>
+    </nav>
+    <div id="Banner" class="relative w-full h-[240px] flex items-center shrink-0 overflow-hidden -mb-[50px]">
+        <h1 class="text-center mx-auto font-extrabold text-[40px] leading-[60px] text-white mb-5 z-20">Consulte os Detalhes do Seu Interesse</h1>
+        <div class="absolute w-full h-full bg-[linear-gradient(180deg,_rgba(0,0,0,0)_0%,#000000_91.83%)] z-10"></div>
+        <img src="assets/images/thumbnails/thumbnail-details-5.png" class="absolute w-full h-full object-cover object-top" alt="">
+    </div>
+    <section id="Check-Booking" class="relative flex flex-col w-[930px] shrink-0 gap-[30px] mx-auto mb-[100px] z-20">
+        <form action="" class="flex items-end rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[16px] bg-white">
+            <div class="flex flex-col w-full gap-2">
+                <label for="name" class="font-semibold">Nome Completo</label>
+                <div class="flex items-center rounded-full border border-[#000929] px-5 gap-[10px] transition-all duration-300 focus-within:ring-2 focus-within:ring-[#1E5DBC]">
+                    <img src="assets/images/icons/security-user-black.svg" class="w-6 h-6" alt="icon">
+                    <input type="text" name="name" id="name" class="appearance-none outline-none w-full py-3 font-semibold placeholder:font-normal placeholder:text-[#000929]" placeholder="Digite seu nome completo">
+                </div>
+            </div>
+            <div class="flex flex-col w-full gap-2">
+                <label for="phone" class="font-semibold">Número de Telefone</label>
+                <div class="flex items-center rounded-full border border-[#000929] px-5 gap-[10px] transition-all duration-300 focus-within:ring-2 focus-within:ring-[#1E5DBC]">
+                    <img src="assets/images/icons/call-black.svg" class="w-6 h-6" alt="icon">
+                    <input type="tel" name="phone" id="phone" class="appearance-none outline-none w-full py-3 font-semibold placeholder:font-normal placeholder:text-[#000929]" placeholder="Digite seu número de telefone">
+                </div>
+            </div>
+            <button type="submit" class="flex items-center justify-center rounded-full p-[12px_30px] gap-3 bg-[#1E5DBC] font-bold text-[#F7F7FD]">
+                <span class="text-nowrap">Consultar</span>
+            </button>
+        </form>
+        <div id="Result" class="grid grid-cols-2 gap-[30px]">
+            <div class="flex flex-col h-fit shrink-0 rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
+                <div class="flex items-center gap-4">
+                    <div class="flex shrink-0 w-[140px] h-[100px] rounded-[20px] overflow-hidden">
+                        <img src="assets/images/thumbnails/thumbnail-details-4.png" class="w-full h-full object-cover" alt="thumbnail">
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p class="font-bold text-xl leading-[30px]">Residencial Villa Verde <br> Apartamento 1503</p>
+                        <div class="flex items-center gap-[6px]">
+                            <img src="assets/images/icons/location.svg" class="w-6 h-6" alt="icon">
+                            <p class="font-semibold">Jardim Paulista - São Paulo</p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="border-[#F6F5FD]">
+                <div class="flex flex-col gap-4">
+                    <h2 class="font-bold">Detalhes do Cliente</h2>
+                    <div class="flex flex-col gap-2">
+                        <h3 class="font-semibold">Nome Completo</h3>
+                        <div class="flex items-center rounded-full px-5 py-3 gap-[10px] bg-[#F7F7FD]">
+                            <img src="assets/images/icons/security-user-black.svg" class="w-6 h-6" alt="icon">
+                            <p class="font-semibold">Carlos Alberto Silva</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <h3 for="phone" class="font-semibold">Número de Telefone</h3>
+                        <div class="flex items-center rounded-full px-5 py-3 gap-[10px] bg-[#F7F7FD]">
+                            <img src="assets/images/icons/call-black.svg" class="w-6 h-6" alt="icon">
+                            <p class="font-semibold">(11) 98765-4321</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <h3 for="email" class="font-semibold">E-mail (opcional)</h3>
+                        <div class="flex items-center rounded-full px-5 py-3 gap-[10px] bg-[#F7F7FD]">
+                            <img src="assets/images/icons/sms.svg" class="w-6 h-6" alt="icon">
+                            <p class="font-semibold">carlos.silva@email.com</p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="border-[#F6F5FD]">
+                <div class="flex items-center gap-3">
+                    <img src="assets/images/icons/shield-tick.svg" class="w-[30px] h-[30px]" alt="icon">
+                    <p class="font-semibold leading-[28px]">Seus dados estão protegidos pela Versare Imóveis.</p>
+                </div>
+            </div>
+            <div class="flex flex-col h-fit shrink-0 rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
+                <h2 class="font-bold">Detalhes do Imóvel</h2>
+                <div class="flex flex-col gap-5">
+                    <div class="flex items-center justify-between">
+                        <p class="font-semibold">Status do Interesse</p>
+                        <p class="rounded-full w-fit p-[6px_16px] bg-[#1E5DBC] font-bold text-sm leading-[21px] text-[#F7F7FD]">ATIVO</p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <p class="font-semibold">Código do Imóvel</p>
+                        <p class="font-bold">VSR1234</p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <p class="font-semibold">Tipo do Imóvel</p>
+                        <p class="font-bold">Apartamento</p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <p class="font-semibold">Modalidade</p>
+                        <p class="font-bold">Venda</p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <p class="font-semibold">Valor do Imóvel</p>
+                        <p class="font-bold text-[22px] leading-[33px] text-[#1E5DBC]">R$ 950.000,00</p>
+                    </div>
+                </div>
+                <hr class="border-[#F6F5FD]">
+                <h2 class="font-bold">Diferenciais do Imóvel</h2>
+                <div class="flex justify-between">
+                    <div class="flex items-center gap-4">
+                        <img src="assets/images/icons/3dcube.svg" class="w-[34px] h-[34px]" alt="icon">
+                        <div class="flex flex-col gap-[2px]">
+                            <p class="font-bold">Acabamento Premium</p>
+                            <p class="text-sm leading-[21px]">Materiais importados</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <img src="assets/images/icons/security-user.svg" class="w-[34px] h-[34px]" alt="icon">
+                        <div class="flex flex-col gap-[2px]">
+                            <p class="font-bold">Condomínio Completo</p>
+                            <p class="text-sm leading-[21px]">Lazer e segurança</p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="border-[#F6F5FD]">
+                <a href="https://wa.me/5511999999999?text=Olá,%20tenho%20interesse%20no%20imóvel%20VSR1234%20da%20Versare%20Imóveis%20e%20gostaria%20de%20agendar%20uma%20visita" target="_blank" class="flex items-center justify-center w-full rounded-full border border-[#1E5DBC] p-[12px_20px] gap-3 bg-[#1E5DBC] font-semibold text-white">
+                    <img src="assets/images/icons/chat-green.svg" class="w-6 h-6 invert" alt="icon">
+                    <span>Agendar Visita via WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <footer class="flex flex-col bg-white mt-auto pt-[50px]">
+        <div class="flex flex-col container-responsive py-10 gap-10">
+            <div class="flex flex-col md:flex-row gap-10 justify-between">
+                <div class="flex flex-col gap-7 max-w-[330px]">
+                    <img src="assets/images/logos/logo.svg" class="w-[178px] h-[42px]" alt="logo">
+                    <p class="text-sm leading-[28px]">Versare Imóveis: Transformando sonhos em realidade desde 2005. Trabalhamos com excelência e dedicação para encontrar o imóvel perfeito para você.</p>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between flex-1 gap-10">
+                    // ... existing code ...
+                </div>
+            </div>
+            <hr class="border-[#F6F5FD]">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
+                <div class="flex gap-[10px]">
+                    <a href="#">Termos & Condições</a>
+                    <a href="#">Política de privacidade</a>
+                </div>
+                <p>2024 Versare Imóveis. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenuDropdown = document.getElementById('mobileMenuDropdown');
+            
+            menuButton.addEventListener('click', function() {
+                mobileMenuDropdown.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
