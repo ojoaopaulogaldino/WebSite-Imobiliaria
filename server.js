@@ -127,6 +127,24 @@ function initializeDatabase() {
     FOREIGN KEY (property_id) REFERENCES properties (id)
   )`);
 
+  // Tabela de mensagens de WhatsApp
+  db.run(`CREATE TABLE IF NOT EXISTS whatsapp_messages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    message TEXT NOT NULL,
+    property_id INTEGER NOT NULL,
+    property_title TEXT NOT NULL,
+    property_code TEXT NOT NULL,
+    property_type TEXT NOT NULL,
+    property_price REAL NOT NULL,
+    status TEXT DEFAULT 'novo',
+    viewed BOOLEAN DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    viewed_at DATETIME,
+    FOREIGN KEY (property_id) REFERENCES properties (id)
+  )`);
+
   // Criar usuário admin padrão se não existir
   db.get("SELECT * FROM users WHERE username = 'admin'", (err, row) => {
     if (err) {
@@ -433,6 +451,38 @@ app.post('/api/contacts', (req, res) => {
       id: this.lastID,
       success: true,
       message: 'Contato enviado com sucesso!'
+    });
+  });
+});
+
+// Rota para enviar mensagem do WhatsApp
+app.post('/api/whatsapp-message', (req, res) => {
+  const { name, phone, message, property_id, property_title, property_code, property_type, property_price } = req.body;
+  
+  if (!name || !phone || !message || !property_id || !property_title || !property_code || !property_type || !property_price) {
+    return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
+  }
+  
+  const sql = `
+    INSERT INTO whatsapp_messages (
+      name, phone, message, property_id, property_title, 
+      property_code, property_type, property_price
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+  
+  db.run(sql, [
+    name, phone, message, property_id, property_title, 
+    property_code, property_type, property_price
+  ], function(err) {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    
+    res.json({
+      id: this.lastID,
+      success: true,
+      message: 'Mensagem enviada com sucesso!'
     });
   });
 });
@@ -842,24 +892,36 @@ app.get('/api/admin/settings', (req, res) => {
 app.post('/api/admin/settings', (req, res) => {
   const settings = req.body;
   
-  db.run(`
-    INSERT INTO settings (key, value, updated_at)
-    VALUES (?, ?, CURRENT_TIMESTAMP)
-    ON CONFLICT(key) 
-    DO UPDATE SET value = excluded.value, updated_at = CURRENT_TIMESTAMP
-  `, [], (err) => {
-    if (err) {
-      console.error('Erro ao inserir configurações:', err);
-      return res.status(500).json({ error: 'Erro ao atualizar configurações' });
-    }
-    
-    // Inserir/atualizar cada configuração individualmente
-    Object.entries(settings).forEach(([key, value]) => {
-      db.run('INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)', [key, value]);
+  try {
+    // Iniciar uma transação
+    db.serialize(() => {
+      db.run('BEGIN TRANSACTION');
+      
+      // Inserir/atualizar cada configuração individualmente
+      Object.entries(settings).forEach(([key, value]) => {
+        db.run(
+          `INSERT INTO settings (key, value, updated_at)
+           VALUES (?, ?, CURRENT_TIMESTAMP)
+           ON CONFLICT(key) 
+           DO UPDATE SET value = excluded.value, updated_at = CURRENT_TIMESTAMP`,
+          [key, value]
+        );
+      });
+      
+      db.run('COMMIT', (err) => {
+        if (err) {
+          console.error('Erro ao salvar configurações:', err);
+          db.run('ROLLBACK');
+          return res.status(500).json({ error: 'Erro ao atualizar configurações' });
+        }
+        res.json({ success: true, message: 'Configurações atualizadas com sucesso' });
+      });
     });
-    
-    res.json({ success: true, message: 'Configurações atualizadas com sucesso' });
-  });
+  } catch (error) {
+    console.error('Erro ao salvar configurações:', error);
+    db.run('ROLLBACK');
+    res.status(500).json({ error: 'Erro ao atualizar configurações' });
+  }
 });
 
 // API pública para obter configurações do site
@@ -887,6 +949,213 @@ app.get('/', (req, res) => {
 // Rota para o painel admin
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'admin', 'index.html'));
+});
+
+// Rota para obter todos os contatos
+app.get('/api/admin/contacts', (req, res) => {
+  db.all('SELECT * FROM contacts ORDER BY created_at DESC', (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
+
+// Rota para obter todas as mensagens de WhatsApp
+app.get('/api/admin/whatsapp-messages', (req, res) => {
+  db.all('SELECT * FROM whatsapp_messages ORDER BY created_at DESC', (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
+
+// Rota para obter um contato específico
+app.get('/api/admin/contacts/:id', (req, res) => {
+  const id = req.params.id;
+  db.get('SELECT * FROM contacts WHERE id = ?', [id], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (!row) {
+      return res.status(404).json({ error: 'Contato não encontrado' });
+    }
+    res.json(row);
+  });
+});
+
+// Rota para obter uma mensagem de WhatsApp específica
+app.get('/api/admin/whatsapp-messages/:id', (req, res) => {
+  const id = req.params.id;
+  db.get('SELECT * FROM whatsapp_messages WHERE id = ?', [id], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (!row) {
+      return res.status(404).json({ error: 'Mensagem não encontrada' });
+    }
+    
+    // Se a mensagem não foi visualizada ainda, marcar como visualizada
+    if (!row.viewed) {
+      db.run(
+        'UPDATE whatsapp_messages SET viewed = 1, viewed_at = CURRENT_TIMESTAMP WHERE id = ?',
+        [id],
+        function(err) {
+          if (err) {
+            console.error('Erro ao atualizar status de visualização:', err.message);
+          }
+        }
+      );
+    }
+    
+    res.json(row);
+  });
+});
+
+// Rota para atualizar status de um contato
+app.put('/api/admin/contacts/:id', (req, res) => {
+  const id = req.params.id;
+  const { status } = req.body;
+  
+  if (!status) {
+    return res.status(400).json({ error: 'Status é obrigatório' });
+  }
+  
+  db.run('UPDATE contacts SET status = ? WHERE id = ?', [status, id], function(err) {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    
+    if (this.changes === 0) {
+      return res.status(404).json({ error: 'Contato não encontrado' });
+    }
+    
+    res.json({
+      success: true,
+      message: 'Status do contato atualizado com sucesso!'
+    });
+  });
+});
+
+// Rota para atualizar status de uma mensagem de WhatsApp
+app.put('/api/admin/whatsapp-messages/:id', (req, res) => {
+  const id = req.params.id;
+  const { status } = req.body;
+  
+  if (!status) {
+    return res.status(400).json({ error: 'Status é obrigatório' });
+  }
+  
+  db.run('UPDATE whatsapp_messages SET status = ? WHERE id = ?', [status, id], function(err) {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    
+    if (this.changes === 0) {
+      return res.status(404).json({ error: 'Mensagem não encontrada' });
+    }
+    
+    res.json({
+      success: true,
+      message: 'Status da mensagem atualizado com sucesso!'
+    });
+  });
+});
+
+// Rota para obter estatísticas para o dashboard
+app.get('/api/admin/dashboard-stats', (req, res) => {
+  const stats = {};
+  
+  // Promessas para cada consulta
+  const promises = [
+    // Total de imóveis
+    new Promise((resolve, reject) => {
+      db.get('SELECT COUNT(*) as total FROM properties', (err, row) => {
+        if (err) reject(err);
+        else {
+          stats.totalProperties = row.total;
+          resolve();
+        }
+      });
+    }),
+    
+    // Total de mensagens de WhatsApp
+    new Promise((resolve, reject) => {
+      db.get('SELECT COUNT(*) as total FROM whatsapp_messages', (err, row) => {
+        if (err) reject(err);
+        else {
+          stats.totalWhatsappMessages = row.total;
+          resolve();
+        }
+      });
+    }),
+    
+    // Novas mensagens de WhatsApp (não visualizadas)
+    new Promise((resolve, reject) => {
+      db.get('SELECT COUNT(*) as total FROM whatsapp_messages WHERE viewed = 0', (err, row) => {
+        if (err) reject(err);
+        else {
+          stats.newWhatsappMessages = row.total;
+          resolve();
+        }
+      });
+    }),
+    
+    // Total de contatos
+    new Promise((resolve, reject) => {
+      db.get('SELECT COUNT(*) as total FROM contacts', (err, row) => {
+        if (err) reject(err);
+        else {
+          stats.totalContacts = row.total;
+          resolve();
+        }
+      });
+    }),
+    
+    // Novos contatos (status novo)
+    new Promise((resolve, reject) => {
+      db.get("SELECT COUNT(*) as total FROM contacts WHERE status = 'novo'", (err, row) => {
+        if (err) reject(err);
+        else {
+          stats.newContacts = row.total;
+          resolve();
+        }
+      });
+    }),
+    
+    // Mensagens recentes de WhatsApp (últimos 5)
+    new Promise((resolve, reject) => {
+      db.all('SELECT * FROM whatsapp_messages ORDER BY created_at DESC LIMIT 5', (err, rows) => {
+        if (err) reject(err);
+        else {
+          stats.recentWhatsappMessages = rows;
+          resolve();
+        }
+      });
+    }),
+    
+    // Contatos recentes (últimos 5)
+    new Promise((resolve, reject) => {
+      db.all('SELECT * FROM contacts ORDER BY created_at DESC LIMIT 5', (err, rows) => {
+        if (err) reject(err);
+        else {
+          stats.recentContacts = rows;
+          resolve();
+        }
+      });
+    })
+  ];
+  
+  // Executar todas as consultas
+  Promise.all(promises)
+    .then(() => {
+      res.json(stats);
+    })
+    .catch(err => {
+      console.error('Erro ao obter estatísticas:', err);
+      res.status(500).json({ error: 'Erro ao obter estatísticas' });
+    });
 });
 
 // Iniciar o servidor

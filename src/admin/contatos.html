@@ -36,14 +36,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="lancamentos.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                            Lançamentos
-                        </a>
-                    </li>
-                    <li>
                         <a href="contatos.html" class="flex items-center p-3 bg-[#1E5DBC] text-white rounded-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -199,31 +191,290 @@
             if (filterForm) {
                 filterForm.addEventListener('submit', function(event) {
                     event.preventDefault();
-                    window.currentPage = 1;
                     loadContacts();
                 });
             }
+        });
+        
+        // Função para carregar mensagens
+        async function loadContacts() {
+            const contactsContainer = document.querySelector('.contacts-list');
+            if (!contactsContainer) return;
             
-            // Configurar paginação
-            const prevPageBtn = document.getElementById('prev-page');
-            const nextPageBtn = document.getElementById('next-page');
+            // Obter valores dos filtros
+            const search = document.getElementById('search')?.value || '';
+            const status = document.getElementById('filter_status')?.value || '';
+            const dateFilter = document.getElementById('filter_date')?.value || '';
             
-            if (prevPageBtn && nextPageBtn) {
-                prevPageBtn.addEventListener('click', function() {
+            try {
+                // Mostrar carregamento
+                contactsContainer.innerHTML = '<tr><td colspan="7" class="text-center py-4">Carregando mensagens...</td></tr>';
+                
+                // Buscar os contatos e mensagens de WhatsApp em paralelo
+                const [contactsResponse, whatsappResponse] = await Promise.all([
+                    fetch('/api/admin/contacts'),
+                    fetch('/api/admin/whatsapp-messages')
+                ]);
+                
+                const contacts = await contactsResponse.json();
+                const whatsappMessages = await whatsappResponse.json();
+                
+                // Converter mensagens de WhatsApp para o formato de contatos
+                const formattedWhatsappMessages = whatsappMessages.map(msg => ({
+                    id: msg.id,
+                    name: msg.name,
+                    email: '(WhatsApp)',
+                    phone: msg.phone,
+                    message: msg.message,
+                    property_id: msg.property_id,
+                    property_title: msg.property_title,
+                    property_code: msg.property_code,
+                    status: msg.status || 'novo',
+                    created_at: msg.created_at,
+                    type: 'whatsapp'
+                }));
+                
+                // Combinar contatos e mensagens de WhatsApp
+                const allMessages = [
+                    ...contacts.map(contact => ({...contact, type: 'contact'})),
+                    ...formattedWhatsappMessages
+                ];
+                
+                // Se não houver mensagens
+                if (!allMessages || allMessages.length === 0) {
+                    contactsContainer.innerHTML = '<tr><td colspan="7" class="text-center py-4">Nenhuma mensagem encontrada.</td></tr>';
+                    return;
+                }
+                
+                // Filtrar as mensagens
+                let filteredMessages = [...allMessages];
+                
+                // Aplicar filtro de busca
+                if (search) {
+                    const searchLower = search.toLowerCase();
+                    filteredMessages = filteredMessages.filter(msg => 
+                        msg.name?.toLowerCase().includes(searchLower) || 
+                        msg.email?.toLowerCase().includes(searchLower) ||
+                        msg.phone?.toLowerCase().includes(searchLower)
+                    );
+                }
+                
+                // Aplicar filtro de status
+                if (status) {
+                    filteredMessages = filteredMessages.filter(msg => msg.status === status);
+                }
+                
+                // Aplicar filtro de data
+                if (dateFilter) {
+                    const now = new Date();
+                    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    const weekStart = new Date(today);
+                    weekStart.setDate(today.getDate() - today.getDay());
+                    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+                    
+                    filteredMessages = filteredMessages.filter(msg => {
+                        const messageDate = new Date(msg.created_at);
+                        
+                        switch(dateFilter) {
+                            case 'today':
+                                return messageDate >= today;
+                            case 'week':
+                                return messageDate >= weekStart;
+                            case 'month':
+                                return messageDate >= monthStart;
+                            default:
+                                return true;
+                        }
+                    });
+                }
+                
+                // Organizar por data (mais recentes primeiro)
+                filteredMessages.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                
+                // Calcular paginação
+                const totalItems = filteredMessages.length;
+                const startIndex = (window.currentPage - 1) * window.itemsPerPage;
+                const endIndex = Math.min(startIndex + window.itemsPerPage, totalItems);
+                
+                // Atualizar texto da paginação
+                document.getElementById('range-start').textContent = totalItems > 0 ? startIndex + 1 : 0;
+                document.getElementById('range-end').textContent = endIndex;
+                document.getElementById('total-items').textContent = totalItems;
+                
+                // Habilitar/desabilitar botões de paginação
+                document.getElementById('prev-page').disabled = window.currentPage === 1;
+                document.getElementById('next-page').disabled = endIndex >= totalItems;
+                
+                // Configurar eventos de paginação
+                document.getElementById('prev-page').onclick = function() {
                     if (window.currentPage > 1) {
                         window.currentPage--;
                         loadContacts();
                     }
-                });
+                };
                 
-                nextPageBtn.addEventListener('click', function() {
-                    if (window.currentPage < window.totalPages) {
+                document.getElementById('next-page').onclick = function() {
+                    if (endIndex < totalItems) {
                         window.currentPage++;
                         loadContacts();
                     }
+                };
+                
+                // Obter apenas as mensagens da página atual
+                const paginatedMessages = filteredMessages.slice(startIndex, endIndex);
+                
+                // Renderizar as mensagens
+                contactsContainer.innerHTML = '';
+                
+                paginatedMessages.forEach(message => {
+                    const row = document.createElement('tr');
+                    
+                    // Formatar status de acordo com o valor
+                    let statusText = 'Novo';
+                    let statusClass = 'bg-blue-100 text-blue-800';
+                    
+                    switch(message.status) {
+                        case 'novo':
+                            statusText = 'Novo';
+                            statusClass = 'bg-blue-100 text-blue-800';
+                            break;
+                        case 'em_andamento':
+                            statusText = 'Em Andamento';
+                            statusClass = 'bg-yellow-100 text-yellow-800';
+                            break;
+                        case 'respondido':
+                            statusText = 'Respondido';
+                            statusClass = 'bg-green-100 text-green-800';
+                            break;
+                        case 'arquivado':
+                            statusText = 'Arquivado';
+                            statusClass = 'bg-gray-100 text-gray-800';
+                            break;
+                        default:
+                            statusText = message.status || 'Novo';
+                            break;
+                    }
+                    
+                    // Formatar data
+                    const date = new Date(message.created_at);
+                    const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth()+1).toString().padStart(2, '0')}/${date.getFullYear()} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+                    
+                    // Adicionar ícone de tipo (WhatsApp ou Email)
+                    const typeIcon = message.type === 'whatsapp' 
+                        ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500 inline-block ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"></path></svg>'
+                        : '';
+
+                    // Link para visualização de detalhes com base no tipo
+                    const detailsLink = message.type === 'whatsapp'
+                        ? `ver-whatsapp.html?id=${message.id}`
+                        : `ver-contato.html?id=${message.id}`;
+                    
+                    row.innerHTML = `
+                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${message.name || 'N/A'} ${typeIcon}</td>
+                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">${message.email || 'N/A'}</td>
+                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">${message.phone || 'N/A'}</td>
+                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">${message.property_code ? `Cód. ${message.property_code}` : (message.property_id ? `ID: ${message.property_id}` : 'N/A')}</td>
+                        <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">${formattedDate}</td>
+                        <td class="px-4 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusClass}">${statusText}</span>
+                        </td>
+                        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
+                            <a href="${detailsLink}" class="text-[#1E5DBC] hover:text-indigo-800 mr-3">Ver detalhes</a>
+                            <button class="text-[#1E5DBC] hover:text-indigo-800 mr-3 change-status" data-id="${message.id}" data-type="${message.type}">Alterar status</button>
+                        </td>
+                    `;
+                    
+                    contactsContainer.appendChild(row);
                 });
+                
+                // Adicionar eventos para os botões de mudança de status
+                const statusButtons = document.querySelectorAll('.change-status');
+                statusButtons.forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        const messageId = this.getAttribute('data-id');
+                        const messageType = this.getAttribute('data-type') || 'contact';
+                        
+                        // Criar um menu dropdown de opções
+                        const dropdown = document.createElement('div');
+                        dropdown.className = 'absolute bg-white shadow-lg rounded-lg border border-gray-200 z-10 py-1';
+                        dropdown.style.minWidth = '180px';
+                        
+                        // Posicionar o dropdown próximo ao botão
+                        const buttonRect = this.getBoundingClientRect();
+                        dropdown.style.top = (window.scrollY + buttonRect.bottom + 5) + 'px';
+                        dropdown.style.left = (window.scrollX + buttonRect.left) + 'px';
+                        
+                        // Opções de status
+                        const statusOptions = [
+                            { value: 'novo', text: 'Novo', class: 'text-blue-600' },
+                            { value: 'em_andamento', text: 'Em Andamento', class: 'text-yellow-600' },
+                            { value: 'respondido', text: 'Respondido', class: 'text-green-600' },
+                            { value: 'arquivado', text: 'Arquivado', class: 'text-gray-600' }
+                        ];
+                        
+                        // Adicionar opções ao dropdown
+                        statusOptions.forEach(option => {
+                            const item = document.createElement('div');
+                            item.className = `px-4 py-2 cursor-pointer hover:bg-gray-100 ${option.class}`;
+                            item.textContent = option.text;
+                            
+                            item.addEventListener('click', async function() {
+                                try {
+                                    // Determinar a URL da API com base no tipo de mensagem
+                                    const apiUrl = messageType === 'whatsapp' 
+                                        ? `/api/admin/whatsapp-messages/${messageId}`
+                                        : `/api/admin/contacts/${messageId}`;
+                                    
+                                    // Enviar requisição para atualizar o status
+                                    const response = await fetch(apiUrl, {
+                                        method: 'PUT',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({ status: option.value })
+                                    });
+                                    
+                                    if (!response.ok) {
+                                        throw new Error('Erro ao atualizar status');
+                                    }
+                                    
+                                    // Recarregar a lista após a atualização
+                                    loadContacts();
+                                    
+                                    // Remover o dropdown
+                                    document.body.removeChild(dropdown);
+                                } catch (error) {
+                                    console.error('Erro ao atualizar status:', error);
+                                    alert('Erro ao atualizar status. Tente novamente mais tarde.');
+                                }
+                            });
+                            
+                            dropdown.appendChild(item);
+                        });
+                        
+                        // Adicionar o dropdown ao body
+                        document.body.appendChild(dropdown);
+                        
+                        // Fechar o dropdown ao clicar fora dele
+                        const closeDropdown = (e) => {
+                            if (!dropdown.contains(e.target) && e.target !== button) {
+                                document.body.removeChild(dropdown);
+                                document.removeEventListener('click', closeDropdown);
+                            }
+                        };
+                        
+                        // Adicionar com pequeno delay para evitar o evento de clique atual
+                        setTimeout(() => {
+                            document.addEventListener('click', closeDropdown);
+                        }, 10);
+                    });
+                });
+                
+            } catch (error) {
+                console.error('Erro ao carregar contatos:', error);
+                contactsContainer.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-red-500">Erro ao carregar mensagens. Tente novamente mais tarde.</td></tr>';
             }
-        });
+        }
     </script>
 </body>
 </html> 

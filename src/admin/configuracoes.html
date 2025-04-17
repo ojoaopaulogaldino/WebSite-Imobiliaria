@@ -36,14 +36,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="lancamentos.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                            Lançamentos
-                        </a>
-                    </li>
-                    <li>
                         <a href="contatos.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -94,24 +86,15 @@
 
             <!-- Main content -->
             <main class="flex-1 p-6">
-                <!-- Tabs -->
-                <div class="mb-6 border-b border-[#E0DEF7]">
-                    <nav class="flex -mb-px">
-                        <a href="#" class="py-4 px-6 border-b-2 border-[#1E5DBC] text-[#1E5DBC] font-medium">
-                            Informações de Contato
-                        </a>
-                        <a href="#" class="py-4 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium">
-                            SEO
-                        </a>
-                        <a href="#" class="py-4 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium">
-                            Redes Sociais
-                        </a>
-                    </nav>
+                <!-- Título da Página -->
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Configurações do Site</h2>
+                    <p class="text-gray-600">Gerencie as configurações gerais da imobiliária</p>
                 </div>
                 
                 <!-- Contact Information Form -->
                 <div class="bg-white rounded-lg shadow p-6 border border-[#E0DEF7] mb-6">
-                    <form>
+                    <form id="settingsForm">
                         <div class="mb-8">
                             <h3 class="text-xl font-semibold text-gray-800 mb-4">Informações de Contato</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -189,70 +172,6 @@
                         </div>
                     </form>
                 </div>
-                
-                <!-- Social Media and Links (Hidden by default) -->
-                <div class="hidden bg-white rounded-lg shadow p-6 border border-[#E0DEF7] mb-6">
-                    <form>
-                        <div class="mb-8">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Redes Sociais</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="flex flex-col gap-[10px]">
-                                    <label class="font-semibold">Instagram</label>
-                                    <input type="url" name="instagram" value="https://instagram.com/versare" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
-                                </div>
-                                <div class="flex flex-col gap-[10px]">
-                                    <label class="font-semibold">Facebook</label>
-                                    <input type="url" name="facebook" value="https://facebook.com/versare" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
-                                </div>
-                                <div class="flex flex-col gap-[10px]">
-                                    <label class="font-semibold">LinkedIn</label>
-                                    <input type="url" name="linkedin" value="https://linkedin.com/company/versare" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
-                                </div>
-                                <div class="flex flex-col gap-[10px]">
-                                    <label class="font-semibold">YouTube</label>
-                                    <input type="url" name="youtube" value="https://youtube.com/versare" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex justify-end space-x-4">
-                            <button type="reset" class="btn btn-secondary btn-md">Restaurar Padrões</button>
-                            <button type="submit" class="btn btn-primary btn-md whitespace-nowrap bg-[#1E5DBC]">Salvar Alterações</button>
-                        </div>
-                    </form>
-                </div>
-                
-                <!-- SEO Settings (Hidden by default) -->
-                <div class="hidden bg-white rounded-lg shadow p-6 border border-[#E0DEF7] mb-6">
-                    <form>
-                        <div class="mb-8">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Configurações de SEO</h3>
-                            <div class="grid grid-cols-1 gap-6">
-                                <div class="flex flex-col gap-[10px]">
-                                    <label class="font-semibold">Título do Site</label>
-                                    <input type="text" name="site_title" value="Versare Imóveis | Imóveis de Alto Padrão em São Paulo" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
-                                </div>
-                                <div class="flex flex-col gap-[10px]">
-                                    <label class="font-semibold">Descrição do Site</label>
-                                    <textarea name="site_description" rows="3" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">Encontre imóveis de alto padrão para venda e aluguel em São Paulo. A Versare Imóveis é especializada em apartamentos, casas e lançamentos nas melhores regiões da cidade.</textarea>
-                                </div>
-                                <div class="flex flex-col gap-[10px]">
-                                    <label class="font-semibold">Palavras-chave</label>
-                                    <input type="text" name="keywords" value="imóveis, apartamentos, casas, imóveis de luxo, alto padrão, são paulo, comprar, alugar, lançamentos" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
-                                </div>
-                                <div class="flex flex-col gap-[10px]">
-                                    <label class="font-semibold">Google Analytics ID</label>
-                                    <input type="text" name="analytics_id" value="UA-123456789-1" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex justify-end space-x-4">
-                            <button type="reset" class="btn btn-secondary btn-md">Restaurar Padrões</button>
-                            <button type="submit" class="btn btn-primary btn-md whitespace-nowrap bg-[#1E5DBC]">Salvar Alterações</button>
-                        </div>
-                    </form>
-                </div>
             </main>
         </div>
     </div>
@@ -269,32 +188,6 @@
                 sidebar.classList.toggle('fixed');
                 sidebar.classList.toggle('inset-0');
                 sidebar.classList.toggle('z-50');
-            });
-            
-            // Tab switching for settings page
-            const tabLinks = document.querySelectorAll('nav a');
-            const tabContents = document.querySelectorAll('main > div.bg-white');
-            
-            tabLinks.forEach((link, index) => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    
-                    // Update tab links
-                    tabLinks.forEach(l => {
-                        l.classList.remove('border-[#1E5DBC]', 'text-[#1E5DBC]');
-                        l.classList.add('border-transparent', 'text-gray-500');
-                    });
-                    
-                    link.classList.remove('border-transparent', 'text-gray-500');
-                    link.classList.add('border-[#1E5DBC]', 'text-[#1E5DBC]');
-                    
-                    // Update tab contents
-                    tabContents.forEach(content => {
-                        content.classList.add('hidden');
-                    });
-                    
-                    tabContents[index].classList.remove('hidden');
-                });
             });
         });
     </script>

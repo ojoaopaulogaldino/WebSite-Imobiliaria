@@ -41,7 +41,7 @@ async function loadFeaturedProperties() {
       // Verifica se as propriedades existem antes de acessá-las
       const images = property.images || [];
       const address = property.address || {};
-      const propertyId = property._id || '';
+      const propertyId = property.id || '';
       const propertyTitle = property.title || 'Imóvel sem título';
       const propertyType = property.type || 'venda';
       const propertyCode = property.code || 'Sem código';
@@ -53,7 +53,7 @@ async function loadFeaturedProperties() {
             <div class="flex flex-col rounded-[20px] border border-[#E0DEF7] bg-white overflow-hidden h-full">
                 <div class="thumbnail-container relative w-full h-[200px]">
                     <p class="btn-tag">
-                        ${propertyType === 'rent' ? 'Aluguel' : 'Venda'}
+                        ${propertyType === 'aluguel' ? 'Aluguel' : 'Venda'}
                     </p>
                     <img src="${images[0] || 'assets/images/thumbnails/thumbnails-1.png'}" class="w-full h-full object-cover" alt="thumbnails">
                 </div>
@@ -156,7 +156,7 @@ async function loadPropertiesByType() {
 
       const card = document.createElement('div');
       card.innerHTML = `
-        <a href="details.html?id=${property._id || ''}" class="card">
+        <a href="details.html?id=${property.id || ''}" class="card">
           <div class="flex flex-col rounded-[20px] border border-[#E0DEF7] bg-white overflow-hidden h-full">
             <div class="thumbnail-container relative w-full h-[200px]">
               <p class="btn-tag">
@@ -394,7 +394,9 @@ async function handleContactFormSubmit(event) {
     const message = form.querySelector('#message').value;
     const propertyId = form.querySelector('input[name="property_id"]')?.value;
     const propertyTitle = document.querySelector('.property-title')?.textContent || 'Imóvel';
-    const propertyCode = document.querySelector('.property-code')?.textContent || '';
+    const propertyCode = document.querySelector('.property-code')?.textContent?.replace('CÓD. ', '') || '';
+    const propertyType = document.querySelector('.property-type')?.textContent || '';
+    const propertyPrice = document.querySelector('.property-price')?.textContent || '';
     
     // Validar campos obrigatórios
     if (!name || !email || !phone || !message) {
@@ -406,17 +408,39 @@ async function handleContactFormSubmit(event) {
     const submitButton = form.querySelector('button[type="submit"]');
     if (submitButton) {
         submitButton.disabled = true;
-        submitButton.textContent = 'Redirecionando...';
+        submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Enviando...';
     }
     
     try {
-        // Buscar número de WhatsApp da imobiliária usando a URL correta
-        const response = await fetch('/api/admin/settings');
-        if (!response.ok) {
+        // 1. Primeiro, salvar a mensagem no banco de dados
+        const saveResponse = await fetch('/api/whatsapp-message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                phone,
+                message,
+                property_id: propertyId,
+                property_title: propertyTitle,
+                property_code: propertyCode,
+                property_type: propertyType,
+                property_price: parseFloat(propertyPrice.replace(/[^\d,]/g, '').replace(',', '.')) || 0
+            })
+        });
+        
+        if (!saveResponse.ok) {
+            throw new Error('Erro ao salvar a mensagem. Por favor, tente novamente.');
+        }
+        
+        // 2. Buscar número de WhatsApp da imobiliária
+        const settingsResponse = await fetch('/api/admin/settings');
+        if (!settingsResponse.ok) {
             throw new Error('Erro ao obter configurações. Por favor, tente novamente mais tarde.');
         }
         
-        const settings = await response.json();
+        const settings = await settingsResponse.json();
         let whatsappNumber = settings.whatsapp || '5511999999999';
         
         // Remover caracteres não numéricos
@@ -445,16 +469,19 @@ async function handleContactFormSubmit(event) {
         // Reabilitar o botão
         if (submitButton) {
             submitButton.disabled = false;
-            submitButton.textContent = 'Chamar no WhatsApp';
+            submitButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Chamar no WhatsApp';
         }
+
+        // Exibir mensagem de sucesso
+        alert('Mensagem enviada com sucesso! Você será redirecionado para o WhatsApp.');
     } catch (error) {
-        console.error('Erro ao redirecionar para WhatsApp:', error);
+        console.error('Erro ao processar envio de mensagem:', error);
         alert(error.message);
         
         // Reabilitar o botão
         if (submitButton) {
             submitButton.disabled = false;
-            submitButton.textContent = 'Chamar no WhatsApp';
+            submitButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Chamar no WhatsApp';
         }
     }
 }

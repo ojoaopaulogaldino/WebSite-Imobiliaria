@@ -5,18 +5,19 @@
 // import { API_BASE_URL } from '../config/auth.js';
 import { showAlert } from './ui.js';
 
-export const API_BASE_URL = '/api';
-// Verificar se o usuário está autenticado
+// URL base da API
+export const API_BASE_URL = 'http://localhost:3000/api';
+
+// Função para verificar autenticação
 export function checkAuth() {
-  const user = getLoggedUser();
-  
-  // Se não tiver usuário e não estiver na página de login, redirecionar para login
-  if (!user && !window.location.pathname.includes('login.html')) {
-    window.location.href = 'login.html';
-    return false;
-  }
-  
-  return true;
+    // Por enquanto, apenas simula autenticação
+    const isAuthenticated = true;
+    
+    if (!isAuthenticated) {
+        window.location.href = 'login.html';
+    }
+    
+    return isAuthenticated;
 }
 
 // Obter usuário logado do localStorage

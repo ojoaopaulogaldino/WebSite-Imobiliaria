@@ -36,14 +36,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="lancamentos.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                            Lançamentos
-                        </a>
-                    </li>
-                    <li>
                         <a href="contatos.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -123,10 +115,10 @@
                     <!-- Card 2 -->
                     <div class="bg-white rounded-lg shadow p-6 border border-[#E0DEF7]">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-lg font-semibold text-gray-700">Lançamentos</h3>
+                            <h3 class="text-lg font-semibold text-gray-700">Imóveis Vendidos</h3>
                             <div class="p-2 bg-blue-100 rounded-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#1E5DBC]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </div>
                         </div>
@@ -135,7 +127,7 @@
                                 <p class="text-3xl font-bold text-gray-800" id="active-properties">--</p>
                                 <p class="text-sm text-green-600">+2 novos</p>
                             </div>
-                            <a href="lancamentos.html" class="text-sm text-[#1E5DBC] font-medium hover:underline">Ver todos</a>
+                            <a href="imoveis.html" class="text-sm text-[#1E5DBC] font-medium hover:underline">Ver todos</a>
                         </div>
                     </div>
                     
@@ -194,51 +186,11 @@
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Localização</th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Preço</th>
                                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
+                            <tbody id="recent-properties" class="bg-white divide-y divide-gray-200">
                                 <tr>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">VSR014</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">Sala Comercial no Centro Empresarial</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">Venda</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">Berrini - São Paulo</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">R$ 550.000,00</td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Ativo</span>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        <a href="#" class="text-[#1E5DBC] hover:text-indigo-800 mr-3">Editar</a>
-                                        <a href="#" class="text-red-600 hover:text-red-800">Remover</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">VSR013</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">Casa Térrea com Piscina e Amplo Quintal</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">Venda</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">Granja Viana - Cotia</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">R$ 1.100.000,00</td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Ativo</span>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        <a href="#" class="text-[#1E5DBC] hover:text-indigo-800 mr-3">Editar</a>
-                                        <a href="#" class="text-red-600 hover:text-red-800">Remover</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">VSR018</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">Studio Decorado Próximo ao Metrô</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">Aluguel</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">Consolação - São Paulo</td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-700">R$ 3.200,00/mês</td>
-                                    <td class="px-4 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Ativo</span>
-                                    </td>
-                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        <a href="#" class="text-[#1E5DBC] hover:text-indigo-800 mr-3">Editar</a>
-                                        <a href="#" class="text-red-600 hover:text-red-800">Remover</a>
-                                    </td>
+                                    <td colspan="6" class="text-center py-4">Carregando imóveis recentes...</td>
                                 </tr>
                             </tbody>
                         </table>
