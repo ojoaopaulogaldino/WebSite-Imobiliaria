@@ -239,7 +239,7 @@ function createPropertyCard(property) {
     
     // Criar o HTML do card
     card.innerHTML = `
-        <a href="imovel-detalhes.html?id=${property.id}" class="block">
+        <a href="details.html?id=${property.id}" class="block">
             <div class="relative">
                 <img src="${imageUrl}" alt="${property.title}" class="w-full h-52 object-cover">
                 <div class="absolute top-0 right-0 bg-[#142a3d] text-white px-3 py-1 m-2 rounded">
