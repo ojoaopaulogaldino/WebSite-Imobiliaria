@@ -603,9 +603,16 @@ function applyFilters() {
     const priceRange = document.querySelector('select[name="priceRange"]')?.value;
     const bedrooms = document.querySelector('select[name="bedrooms"]')?.value;
     const area = document.querySelector('select[name="area"]')?.value;
-    const parking = document.querySelector('select[name="parking"]')?.value;
+    const propertyCode = document.querySelector('input[name="code"]')?.value;
 
     let filteredProperties = [...currentProperties];
+
+    // Filtra por código do imóvel
+    if (propertyCode && propertyCode.trim() !== '') {
+        filteredProperties = filteredProperties.filter(property => 
+            property.code?.toLowerCase().includes(propertyCode.toLowerCase())
+        );
+    }
 
     // Filtra por localização
     if (location) {
@@ -672,23 +679,6 @@ function applyFilters() {
                     return propertyArea > 100 && propertyArea <= 200;
                 case 'acima-200':
                     return propertyArea > 200;
-                default:
-                    return true;
-            }
-        });
-    }
-
-    // Filtra por vagas de garagem
-    if (parking) {
-        filteredProperties = filteredProperties.filter(property => {
-            const spots = property.parking_spaces || 0;
-            switch(parking) {
-                case '1-vaga':
-                    return spots === 1;
-                case '2-vagas':
-                    return spots === 2;
-                case '3+-vagas':
-                    return spots >= 3;
                 default:
                     return true;
             }
