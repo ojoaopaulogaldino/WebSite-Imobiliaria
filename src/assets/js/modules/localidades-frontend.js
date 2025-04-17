@@ -11,13 +11,14 @@ const API_PROPERTIES = `${API_BASE_URL}/properties`;
 
 /**
  * Inicializa o módulo de localidades para o frontend
+ * @param {string} [filterContainerId] - ID do elemento onde o formulário de filtro será inserido
  */
-export function initializeLocalidadesFrontend() {
+export function initializeLocalidadesFrontend(filterContainerId = null) {
     // Carregar cidades para o slider da página inicial
     loadCitiesForSlider();
     
     // Inicializar o formulário de filtro, se existir
-    initializeFilterForm();
+    initializeFilterForm(filterContainerId);
 }
 
 /**
@@ -117,9 +118,28 @@ function createCitySlide(city) {
 }
 
 /**
- * Inicializa o formulário de filtro na seção Fresh-Space
+ * Inicializa o formulário de filtro
+ * @param {string} [containerId] - ID do elemento onde o formulário de filtro será inserido
  */
-function initializeFilterForm() {
+function initializeFilterForm(containerId = null) {
+    // Se for fornecido um ID de contêiner, procura por esse elemento
+    const filterContainer = containerId ? document.getElementById(containerId) : null;
+    
+    // Se encontrou o contêiner especificado
+    if (filterContainer) {
+        // Cria o formulário de filtro
+        const filterForm = createFilterForm();
+        
+        // Limpa o contêiner e insere o formulário
+        filterContainer.innerHTML = '';
+        filterContainer.appendChild(filterForm);
+        
+        // Adiciona o evento de submit ao formulário
+        filterForm.addEventListener('submit', handleFilterSubmit);
+        return;
+    }
+    
+    // Comportamento antigo - se não tiver ID de contêiner ou não encontrar o elemento
     const freshSpaceSection = document.getElementById('Fresh-Space');
     
     // Se não encontrar a seção, não continua
@@ -145,7 +165,7 @@ function initializeFilterForm() {
  */
 function createFilterForm() {
     const formContainer = document.createElement('div');
-    formContainer.className = 'bg-white rounded-lg shadow-md p-6 mb-8';
+    formContainer.className = 'w-full';
     
     formContainer.innerHTML = `
         <form id="filter-form" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -184,7 +204,7 @@ function createFilterForm() {
             </div>
             
             <div class="flex items-end">
-                <button type="submit" class="w-full p-3 bg-[#142a3d] text-white font-medium rounded-lg hover:bg-[#184a97] transition-colors">
+                <button type="submit" class="w-full p-3 bg-[#18110e] text-white font-medium rounded-lg hover:bg-[#2c1e17] transition-colors">
                     Buscar Imóveis
                 </button>
             </div>

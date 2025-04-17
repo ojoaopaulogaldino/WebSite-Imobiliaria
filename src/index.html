@@ -149,10 +149,13 @@
                 <img src="assets/images/backgrounds/banner.png" class="w-full h-full object-cover" alt="hero background">
             </div>
         </section>
-        <div class="flex flex-col pt-[150px] pb-10 px-4 lg:px-[120px] gap-10 bg-[#142a3d]" style="height: 15em;">
+        <div class="flex flex-col pt-[50px] pb-10 px-4 lg:px-[120px] gap-10 bg-[#142a3d]" style="height: auto; min-height: 15em;">
+            <div id="filter-container" class="bg-white rounded-lg shadow-md p-6 w-full max-w-[1130px] mx-auto">
+                <!-- O formulário de filtro será inserido aqui pelo JavaScript -->
+            </div>
         </div>
     </header>
-    <section id="Cities" class="flex flex-col gap-[30px] mt-[7em] px-4 lg:px-0">
+    <section id="Cities" class="flex flex-col gap-[30px] mt-[15em] px-4 lg:px-0">
         <div class="w-full max-w-[1130px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
             <h2 class="font-bold text-[28px] lg:text-[32px] leading-[40px] lg:leading-[48px]">Descubra Imóveis<br>Nas Melhores Localidades</h2>
             <!-- <a href="index.html" class="btn btn-secondary btn-md">
@@ -199,7 +202,6 @@
     
     <section id="Fresh-Space" class="mx-auto w-full max-w-[1130px] px-5 py-14 md:py-[70px]">
       <h2 class="text-center font-bold text-4xl">Imóveis em Destaque</h2>
-      <!-- O formulário de filtro será inserido aqui pelo JavaScript -->
 
       <div class="container w-full max-w-[1130px] mx-auto">
         <div style="display: grid; gap: 30px; width: 100%;" class="cards-grid">
@@ -248,8 +250,8 @@
           },
         });
         
-        // Inicializa o módulo de localidades
-        initializeLocalidadesFrontend();
+        // Inicializa o módulo de localidades e passa o ID do novo contêiner de filtro
+        initializeLocalidadesFrontend('filter-container');
       });
     </script>
 </body>
