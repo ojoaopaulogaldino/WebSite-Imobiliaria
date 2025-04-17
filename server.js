@@ -181,7 +181,7 @@ function initializeDatabase() {
     }
   });
 
-  // Criar tabela de configurações
+  // Tabela de configurações
   db.run(`
     CREATE TABLE IF NOT EXISTS settings (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -189,6 +189,44 @@ function initializeDatabase() {
       value TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+  
+  // Tabela de estados
+  db.run(`
+    CREATE TABLE IF NOT EXISTS states (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL UNIQUE,
+      abbreviation TEXT NOT NULL UNIQUE,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+  
+  // Tabela de cidades
+  db.run(`
+    CREATE TABLE IF NOT EXISTS cities (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      state_id INTEGER NOT NULL,
+      image_url TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (state_id) REFERENCES states (id),
+      UNIQUE(name, state_id)
+    )
+  `);
+  
+  // Tabela de bairros
+  db.run(`
+    CREATE TABLE IF NOT EXISTS neighborhoods (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      city_id INTEGER NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (city_id) REFERENCES cities (id),
+      UNIQUE(name, city_id)
     )
   `);
 }
@@ -1156,6 +1194,538 @@ app.get('/api/admin/dashboard-stats', (req, res) => {
       console.error('Erro ao obter estatísticas:', err);
       res.status(500).json({ error: 'Erro ao obter estatísticas' });
     });
+});
+
+// API para gerenciar Estados
+// Listar todos os estados
+app.get('/api/admin/states', (req, res) => {
+  db.all('SELECT * FROM states ORDER BY name', (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
+
+// Obter um estado específico
+app.get('/api/admin/states/:id', (req, res) => {
+  const id = req.params.id;
+  db.get('SELECT * FROM states WHERE id = ?', [id], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (!row) {
+      return res.status(404).json({ error: 'Estado não encontrado' });
+    }
+    res.json(row);
+  });
+});
+
+// Adicionar um novo estado
+app.post('/api/admin/states', (req, res) => {
+  const { name, abbreviation } = req.body;
+  
+  if (!name || !abbreviation) {
+    return res.status(400).json({ error: 'Nome e sigla são obrigatórios' });
+  }
+  
+  db.run(
+    'INSERT INTO states (name, abbreviation) VALUES (?, ?)',
+    [name, abbreviation],
+    function(err) {
+      if (err) {
+        // Verificar se é um erro de duplicidade
+        if (err.message.includes('UNIQUE constraint failed')) {
+          return res.status(400).json({ error: 'Estado ou sigla já existem' });
+        }
+        return res.status(500).json({ error: err.message });
+      }
+      
+      res.status(201).json({
+        id: this.lastID,
+        name,
+        abbreviation,
+        success: true,
+        message: 'Estado criado com sucesso!'
+      });
+    }
+  );
+});
+
+// Atualizar um estado
+app.put('/api/admin/states/:id', (req, res) => {
+  const id = req.params.id;
+  const { name, abbreviation } = req.body;
+  
+  if (!name || !abbreviation) {
+    return res.status(400).json({ error: 'Nome e sigla são obrigatórios' });
+  }
+  
+  db.run(
+    'UPDATE states SET name = ?, abbreviation = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+    [name, abbreviation, id],
+    function(err) {
+      if (err) {
+        // Verificar se é um erro de duplicidade
+        if (err.message.includes('UNIQUE constraint failed')) {
+          return res.status(400).json({ error: 'Estado ou sigla já existem' });
+        }
+        return res.status(500).json({ error: err.message });
+      }
+      
+      if (this.changes === 0) {
+        return res.status(404).json({ error: 'Estado não encontrado' });
+      }
+      
+      res.json({
+        id: parseInt(id),
+        name,
+        abbreviation,
+        success: true,
+        message: 'Estado atualizado com sucesso!'
+      });
+    }
+  );
+});
+
+// Excluir um estado
+app.delete('/api/admin/states/:id', (req, res) => {
+  const id = req.params.id;
+  
+  // Verificar se existem cidades vinculadas a este estado
+  db.get('SELECT COUNT(*) as count FROM cities WHERE state_id = ?', [id], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    
+    if (result.count > 0) {
+      return res.status(400).json({ 
+        error: 'Não é possível excluir o estado pois existem cidades vinculadas a ele' 
+      });
+    }
+    
+    // Se não houver cidades, pode excluir o estado
+    db.run('DELETE FROM states WHERE id = ?', [id], function(err) {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      
+      if (this.changes === 0) {
+        return res.status(404).json({ error: 'Estado não encontrado' });
+      }
+      
+      res.json({
+        success: true,
+        message: 'Estado excluído com sucesso!'
+      });
+    });
+  });
+});
+
+// API para gerenciar Cidades
+// Listar todas as cidades (com informações do estado)
+app.get('/api/admin/cities', (req, res) => {
+  db.all(`
+    SELECT c.*, s.name as state_name, s.abbreviation as state_abbreviation 
+    FROM cities c
+    JOIN states s ON c.state_id = s.id
+    ORDER BY c.name
+  `, (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
+
+// Obter uma cidade específica
+app.get('/api/admin/cities/:id', (req, res) => {
+  const id = req.params.id;
+  db.get(`
+    SELECT c.*, s.name as state_name, s.abbreviation as state_abbreviation 
+    FROM cities c
+    JOIN states s ON c.state_id = s.id
+    WHERE c.id = ?
+  `, [id], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (!row) {
+      return res.status(404).json({ error: 'Cidade não encontrada' });
+    }
+    res.json(row);
+  });
+});
+
+// Adicionar uma nova cidade
+app.post('/api/admin/cities', upload.single('image'), (req, res) => {
+  const { name, state_id } = req.body;
+  
+  if (!name || !state_id) {
+    return res.status(400).json({ error: 'Nome e estado são obrigatórios' });
+  }
+  
+  let image_url = null;
+  
+  // Se foi enviada uma imagem
+  if (req.file) {
+    image_url = `/assets/images/uploads/${req.file.filename}`;
+  }
+  
+  db.run(
+    'INSERT INTO cities (name, state_id, image_url) VALUES (?, ?, ?)',
+    [name, state_id, image_url],
+    function(err) {
+      if (err) {
+        // Verificar se é um erro de duplicidade
+        if (err.message.includes('UNIQUE constraint failed')) {
+          return res.status(400).json({ error: 'Cidade já existe neste estado' });
+        }
+        return res.status(500).json({ error: err.message });
+      }
+      
+      res.status(201).json({
+        id: this.lastID,
+        name,
+        state_id,
+        image_url,
+        success: true,
+        message: 'Cidade criada com sucesso!'
+      });
+    }
+  );
+});
+
+// Atualizar uma cidade
+app.put('/api/admin/cities/:id', upload.single('image'), (req, res) => {
+  const id = req.params.id;
+  const { name, state_id } = req.body;
+  
+  if (!name || !state_id) {
+    return res.status(400).json({ error: 'Nome e estado são obrigatórios' });
+  }
+  
+  // Primeiro, verificar se a cidade existe e obter informações atuais
+  db.get('SELECT * FROM cities WHERE id = ?', [id], (err, city) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    
+    if (!city) {
+      return res.status(404).json({ error: 'Cidade não encontrada' });
+    }
+    
+    let image_url = city.image_url;
+    
+    // Se foi enviada uma imagem nova
+    if (req.file) {
+      // Excluir a imagem antiga se existir
+      if (city.image_url && fs.existsSync(path.join(__dirname, 'src', city.image_url))) {
+        try {
+          fs.unlinkSync(path.join(__dirname, 'src', city.image_url));
+        } catch (error) {
+          console.error('Erro ao excluir imagem antiga:', error);
+        }
+      }
+      
+      image_url = `/assets/images/uploads/${req.file.filename}`;
+    }
+    
+    db.run(
+      'UPDATE cities SET name = ?, state_id = ?, image_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+      [name, state_id, image_url, id],
+      function(err) {
+        if (err) {
+          // Verificar se é um erro de duplicidade
+          if (err.message.includes('UNIQUE constraint failed')) {
+            return res.status(400).json({ error: 'Cidade já existe neste estado' });
+          }
+          return res.status(500).json({ error: err.message });
+        }
+        
+        res.json({
+          id: parseInt(id),
+          name,
+          state_id,
+          image_url,
+          success: true,
+          message: 'Cidade atualizada com sucesso!'
+        });
+      }
+    );
+  });
+});
+
+// Excluir uma cidade
+app.delete('/api/admin/cities/:id', (req, res) => {
+  const id = req.params.id;
+  
+  // Verificar se existem bairros vinculados a esta cidade
+  db.get('SELECT COUNT(*) as count FROM neighborhoods WHERE city_id = ?', [id], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    
+    if (result.count > 0) {
+      return res.status(400).json({ 
+        error: 'Não é possível excluir a cidade pois existem bairros vinculados a ela' 
+      });
+    }
+    
+    // Obter informações da cidade para excluir a imagem se existir
+    db.get('SELECT * FROM cities WHERE id = ?', [id], (err, city) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      
+      if (!city) {
+        return res.status(404).json({ error: 'Cidade não encontrada' });
+      }
+      
+      // Excluir a cidade
+      db.run('DELETE FROM cities WHERE id = ?', [id], function(err) {
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        }
+        
+        // Excluir a imagem se existir
+        if (city.image_url && fs.existsSync(path.join(__dirname, 'src', city.image_url))) {
+          try {
+            fs.unlinkSync(path.join(__dirname, 'src', city.image_url));
+          } catch (error) {
+            console.error('Erro ao excluir imagem:', error);
+          }
+        }
+        
+        res.json({
+          success: true,
+          message: 'Cidade excluída com sucesso!'
+        });
+      });
+    });
+  });
+});
+
+// API para gerenciar Bairros
+// Listar todos os bairros (com informações da cidade e estado)
+app.get('/api/admin/neighborhoods', (req, res) => {
+  db.all(`
+    SELECT n.*, c.name as city_name, s.name as state_name, s.abbreviation as state_abbreviation
+    FROM neighborhoods n
+    JOIN cities c ON n.city_id = c.id
+    JOIN states s ON c.state_id = s.id
+    ORDER BY n.name
+  `, (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
+
+// Obter um bairro específico
+app.get('/api/admin/neighborhoods/:id', (req, res) => {
+  const id = req.params.id;
+  db.get(`
+    SELECT n.*, c.name as city_name, s.name as state_name, s.abbreviation as state_abbreviation
+    FROM neighborhoods n
+    JOIN cities c ON n.city_id = c.id
+    JOIN states s ON c.state_id = s.id
+    WHERE n.id = ?
+  `, [id], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (!row) {
+      return res.status(404).json({ error: 'Bairro não encontrado' });
+    }
+    res.json(row);
+  });
+});
+
+// Adicionar um novo bairro
+app.post('/api/admin/neighborhoods', (req, res) => {
+  const { name, city_id } = req.body;
+  
+  if (!name || !city_id) {
+    return res.status(400).json({ error: 'Nome e cidade são obrigatórios' });
+  }
+  
+  db.run(
+    'INSERT INTO neighborhoods (name, city_id) VALUES (?, ?)',
+    [name, city_id],
+    function(err) {
+      if (err) {
+        // Verificar se é um erro de duplicidade
+        if (err.message.includes('UNIQUE constraint failed')) {
+          return res.status(400).json({ error: 'Bairro já existe nesta cidade' });
+        }
+        return res.status(500).json({ error: err.message });
+      }
+      
+      res.status(201).json({
+        id: this.lastID,
+        name,
+        city_id,
+        success: true,
+        message: 'Bairro criado com sucesso!'
+      });
+    }
+  );
+});
+
+// Atualizar um bairro
+app.put('/api/admin/neighborhoods/:id', (req, res) => {
+  const id = req.params.id;
+  const { name, city_id } = req.body;
+  
+  if (!name || !city_id) {
+    return res.status(400).json({ error: 'Nome e cidade são obrigatórios' });
+  }
+  
+  db.run(
+    'UPDATE neighborhoods SET name = ?, city_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+    [name, city_id, id],
+    function(err) {
+      if (err) {
+        // Verificar se é um erro de duplicidade
+        if (err.message.includes('UNIQUE constraint failed')) {
+          return res.status(400).json({ error: 'Bairro já existe nesta cidade' });
+        }
+        return res.status(500).json({ error: err.message });
+      }
+      
+      if (this.changes === 0) {
+        return res.status(404).json({ error: 'Bairro não encontrado' });
+      }
+      
+      res.json({
+        id: parseInt(id),
+        name,
+        city_id,
+        success: true,
+        message: 'Bairro atualizado com sucesso!'
+      });
+    }
+  );
+});
+
+// Excluir um bairro
+app.delete('/api/admin/neighborhoods/:id', (req, res) => {
+  const id = req.params.id;
+  
+  // Verificar se o bairro existe
+  db.get('SELECT * FROM neighborhoods WHERE id = ?', [id], (err, neighborhood) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    
+    if (!neighborhood) {
+      return res.status(404).json({ error: 'Bairro não encontrado' });
+    }
+    
+    // Verificar se há imóveis vinculados ao bairro
+    db.get('SELECT COUNT(*) as count FROM properties WHERE neighborhood = ?', [neighborhood.name], (err, result) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      
+      if (result.count > 0) {
+        return res.status(400).json({ 
+          error: 'Não é possível excluir o bairro pois existem imóveis vinculados a ele' 
+        });
+      }
+      
+      // Se não houver imóveis, pode excluir o bairro
+      db.run('DELETE FROM neighborhoods WHERE id = ?', [id], function(err) {
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        }
+        
+        res.json({
+          success: true,
+          message: 'Bairro excluído com sucesso!'
+        });
+      });
+    });
+  });
+});
+
+// API pública para obter lista de localizações para o site
+app.get('/api/locations', (req, res) => {
+  db.all(`
+    SELECT s.id as state_id, s.name as state_name, s.abbreviation,
+           c.id as city_id, c.name as city_name, c.image_url,
+           n.id as neighborhood_id, n.name as neighborhood_name
+    FROM states s
+    LEFT JOIN cities c ON c.state_id = s.id
+    LEFT JOIN neighborhoods n ON n.city_id = c.id
+    ORDER BY s.name, c.name, n.name
+  `, (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    
+    // Organizar os dados em uma estrutura hierárquica
+    const locations = {};
+    
+    rows.forEach(row => {
+      // Inicializar estado se não existir
+      if (!locations[row.state_id]) {
+        locations[row.state_id] = {
+          id: row.state_id,
+          name: row.state_name,
+          abbreviation: row.abbreviation,
+          cities: {}
+        };
+      }
+      
+      // Se tiver cidade
+      if (row.city_id) {
+        // Inicializar cidade se não existir
+        if (!locations[row.state_id].cities[row.city_id]) {
+          locations[row.state_id].cities[row.city_id] = {
+            id: row.city_id,
+            name: row.city_name,
+            image_url: row.image_url,
+            neighborhoods: []
+          };
+        }
+        
+        // Se tiver bairro
+        if (row.neighborhood_id) {
+          locations[row.state_id].cities[row.city_id].neighborhoods.push({
+            id: row.neighborhood_id,
+            name: row.neighborhood_name
+          });
+        }
+      }
+    });
+    
+    // Converter para arrays
+    const result = Object.values(locations).map(state => {
+      state.cities = Object.values(state.cities);
+      return state;
+    });
+    
+    res.json(result);
+  });
+});
+
+// Rota pública para listar cidades com contagem de propriedades
+app.get('/api/cities', (req, res) => {
+  db.all(`
+    SELECT c.id, c.name, c.image_url, COUNT(p.id) as property_count
+    FROM cities c
+    LEFT JOIN properties p ON p.city = c.name
+    GROUP BY c.id
+    ORDER BY c.name
+  `, (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
 });
 
 // Iniciar o servidor

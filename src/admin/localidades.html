@@ -1,0 +1,385 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>Gerenciar Localidades | Painel Administrativo</title>
+</head>
+<body class="bg-[#F7F7FD]">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-[#E0DEF7] shadow-md hidden md:block">
+            <div class="p-4 border-b border-[#E0DEF7]">
+                <a href="../index.html" target="_blank" class="block">
+                    <img src="../assets/images/logos/Logotipo - Versare - Marrom.png" alt="First Office" class="w-[130px]">
+                </a>
+                <p class="mt-2 text-sm text-gray-500">Painel Administrativo</p>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="index.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="imoveis.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            Imóveis
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contatos.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            Mensagens
+                        </a>
+                    </li>
+                    <li>
+                        <a href="localidades.html" class="flex items-center p-3 bg-[#1E5DBC] text-white rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Localidades
+                        </a>
+                    </li>
+                    <li>
+                        <a href="configuracoes.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Configurações
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="flex-1 flex flex-col">
+            <!-- Top navbar -->
+            <header class="bg-white shadow-sm border-b border-[#E0DEF7] p-4">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-4">
+                        <button class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                        <h1 class="text-xl font-semibold text-gray-800">Gerenciar Localidades</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <button class="p-2 rounded-full bg-gray-100 hover:bg-gray-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="mr-2 text-sm font-medium text-gray-700">Admin</span>
+                            <img src="../assets/images/icons/avatar-placeholder.svg" alt="Avatar" class="h-8 w-8 rounded-full">
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main content -->
+            <main class="flex-1 p-6">
+                <div class="mb-6 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Localidades</h2>
+                        <p class="text-gray-600">Gerencie os estados, cidades e bairros onde a imobiliária atua</p>
+                    </div>
+                </div>
+                
+                <!-- Tabs -->
+                <div class="bg-white rounded-lg shadow border border-[#E0DEF7] mb-6">
+                    <div class="flex border-b border-[#E0DEF7]">
+                        <button id="tab-estados" class="tab-button flex-1 py-4 px-6 text-center font-semibold text-[#1E5DBC] border-b-2 border-[#1E5DBC]">Estados</button>
+                        <button id="tab-cidades" class="tab-button flex-1 py-4 px-6 text-center font-semibold text-gray-500">Cidades</button>
+                        <button id="tab-bairros" class="tab-button flex-1 py-4 px-6 text-center font-semibold text-gray-500">Bairros</button>
+                    </div>
+                    
+                    <!-- Estados Tab Content -->
+                    <div id="content-estados" class="tab-content p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800">Lista de Estados</h3>
+                            <button id="btn-add-estado" class="btn btn-primary btn-md whitespace-nowrap bg-[#1E5DBC] text-white px-4 py-2 rounded-lg flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                                Adicionar Estado
+                            </button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead>
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sigla</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="estados-list" class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td colspan="4" class="text-center py-4">Carregando estados...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Cidades Tab Content -->
+                    <div id="content-cidades" class="tab-content p-6 hidden">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800">Lista de Cidades</h3>
+                            <button id="btn-add-cidade" class="btn btn-primary btn-md whitespace-nowrap bg-[#1E5DBC] text-white px-4 py-2 rounded-lg flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                                Adicionar Cidade
+                            </button>
+                        </div>
+                        <div class="mb-6">
+                            <label class="font-semibold mb-2 block">Filtrar por Estado:</label>
+                            <select id="filter-estado-cidade" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full md:w-1/3">
+                                <option value="">Todos os Estados</option>
+                                <!-- Options serão preenchidas via JavaScript -->
+                            </select>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead>
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Imagem</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cidades-list" class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td colspan="5" class="text-center py-4">Carregando cidades...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Bairros Tab Content -->
+                    <div id="content-bairros" class="tab-content p-6 hidden">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800">Lista de Bairros</h3>
+                            <button id="btn-add-bairro" class="btn btn-primary btn-md whitespace-nowrap bg-[#1E5DBC] text-white px-4 py-2 rounded-lg flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                                Adicionar Bairro
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <label class="font-semibold mb-2 block">Filtrar por Estado:</label>
+                                <select id="filter-estado-bairro" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                                    <option value="">Todos os Estados</option>
+                                    <!-- Options serão preenchidas via JavaScript -->
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-semibold mb-2 block">Filtrar por Cidade:</label>
+                                <select id="filter-cidade-bairro" class="rounded-[10px] border border-[#E0DEF7] p-3 w-full">
+                                    <option value="">Todas as Cidades</option>
+                                    <!-- Options serão preenchidas via JavaScript -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead>
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cidade</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bairros-list" class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td colspan="5" class="text-center py-4">Carregando bairros...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal de Estado -->
+    <div id="modal-estado" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg p-6 max-w-md w-full">
+            <h3 class="text-lg font-semibold mb-4" id="modal-estado-title">Adicionar Estado</h3>
+            <form id="form-estado">
+                <input type="hidden" id="estado-id">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nome do Estado</label>
+                    <input type="text" id="estado-nome" class="w-full p-2 border rounded" required>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Sigla (UF)</label>
+                    <input type="text" id="estado-sigla" class="w-full p-2 border rounded" maxlength="2" required>
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button type="button" id="btn-cancel-estado" class="px-4 py-2 border rounded text-gray-700">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-[#1E5DBC] text-white rounded">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Cidade -->
+    <div id="modal-cidade" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg p-6 max-w-md w-full">
+            <h3 class="text-lg font-semibold mb-4" id="modal-cidade-title">Adicionar Cidade</h3>
+            <form id="form-cidade" enctype="multipart/form-data">
+                <input type="hidden" id="cidade-id">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nome da Cidade</label>
+                    <input type="text" id="cidade-nome" class="w-full p-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
+                    <select id="cidade-estado" class="w-full p-2 border rounded" required>
+                        <option value="">Selecione um Estado</option>
+                        <!-- Options serão preenchidas via JavaScript -->
+                    </select>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Imagem da Cidade</label>
+                    <input type="file" id="cidade-imagem" class="w-full p-2 border rounded" accept="image/*">
+                    <div id="cidade-imagem-preview" class="mt-2 hidden">
+                        <p class="text-sm text-gray-600 mb-1">Imagem atual:</p>
+                        <img id="cidade-imagem-atual" src="" alt="Preview" class="max-h-32 max-w-full border rounded">
+                    </div>
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button type="button" id="btn-cancel-cidade" class="px-4 py-2 border rounded text-gray-700">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-[#1E5DBC] text-white rounded">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Bairro -->
+    <div id="modal-bairro" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg p-6 max-w-md w-full">
+            <h3 class="text-lg font-semibold mb-4" id="modal-bairro-title">Adicionar Bairro</h3>
+            <form id="form-bairro">
+                <input type="hidden" id="bairro-id">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nome do Bairro</label>
+                    <input type="text" id="bairro-nome" class="w-full p-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
+                    <select id="bairro-estado" class="w-full p-2 border rounded" required>
+                        <option value="">Selecione um Estado</option>
+                        <!-- Options serão preenchidas via JavaScript -->
+                    </select>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Cidade</label>
+                    <select id="bairro-cidade" class="w-full p-2 border rounded" required>
+                        <option value="">Selecione uma Cidade</option>
+                        <!-- Options serão preenchidas após selecionar o estado -->
+                    </select>
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button type="button" id="btn-cancel-bairro" class="px-4 py-2 border rounded text-gray-700">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-[#1E5DBC] text-white rounded">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação de Exclusão -->
+    <div id="modal-confirmacao" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg p-6 max-w-md w-full">
+            <h3 class="text-lg font-semibold mb-4">Confirmação</h3>
+            <p id="mensagem-confirmacao">Tem certeza que deseja excluir este item?</p>
+            <div class="mt-6 flex justify-end space-x-3">
+                <button id="btn-cancel-confirmacao" class="px-4 py-2 border rounded text-gray-700">Cancelar</button>
+                <button id="btn-confirmar-exclusao" class="px-4 py-2 bg-red-600 text-white rounded">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuButton = document.querySelector('.md\\:hidden');
+            const sidebar = document.querySelector('aside');
+            
+            menuButton.addEventListener('click', function() {
+                sidebar.classList.toggle('hidden');
+                sidebar.classList.toggle('md:block');
+                sidebar.classList.toggle('fixed');
+                sidebar.classList.toggle('inset-0');
+                sidebar.classList.toggle('z-50');
+            });
+
+            // Tabs functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('text-[#1E5DBC]', 'border-b-2', 'border-[#1E5DBC]');
+                        btn.classList.add('text-gray-500');
+                    });
+
+                    // Add active class to clicked button
+                    this.classList.add('text-[#1E5DBC]', 'border-b-2', 'border-[#1E5DBC]');
+                    this.classList.remove('text-gray-500');
+
+                    // Hide all tab contents
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+
+                    // Show corresponding tab content
+                    const contentId = this.id.replace('tab-', 'content-');
+                    document.getElementById(contentId).classList.remove('hidden');
+                });
+            });
+        });
+    </script>
+    <script type="module">
+        import { checkAuth } from '../assets/js/modules/auth.js';
+        import { initializeLocalidades } from '../assets/js/modules/localidades.js';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar autenticação
+            checkAuth();
+            
+            // Inicializar gestão de localidades
+            initializeLocalidades();
+        });
+    </script>
+</body>
+</html> 
