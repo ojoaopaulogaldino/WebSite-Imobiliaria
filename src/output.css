@@ -760,7 +760,7 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   --tw-bg-opacity: 1;
-  background-color: rgb(30 93 188 / var(--tw-bg-opacity));
+  background-color: rgb(20 42 61 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
@@ -796,7 +796,7 @@ video {
   width: fit-content;
   border-radius: 9999px;
   --tw-bg-opacity: 1;
-  background-color: rgb(30 93 188 / var(--tw-bg-opacity));
+  background-color: rgb(20 42 61 / var(--tw-bg-opacity));
   padding: 6px 16px;
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -1781,9 +1781,9 @@ video {
   border-color: rgb(0 9 41 / var(--tw-border-opacity));
 }
 
-.border-\[\#1E5DBC\] {
+.border-\[\#142a3d\] {
   --tw-border-opacity: 1;
-  border-color: rgb(30 93 188 / var(--tw-border-opacity));
+  border-color: rgb(20 42 61 / var(--tw-border-opacity));
 }
 
 .border-\[\#E0DEF7\] {
@@ -1836,14 +1836,19 @@ video {
   background-color: rgb(0 9 41 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#0e314f\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 49 79 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#142a3d\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(20 42 61 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#1A1F3A\] {
   --tw-bg-opacity: 1;
   background-color: rgb(26 31 58 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#1E5DBC\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 93 188 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#25D366\] {
@@ -2328,9 +2333,9 @@ video {
   color: rgb(0 9 41 / var(--tw-text-opacity));
 }
 
-.text-\[\#1E5DBC\] {
+.text-\[\#142a3d\] {
   --tw-text-opacity: 1;
-  color: rgb(30 93 188 / var(--tw-text-opacity));
+  color: rgb(20 42 61 / var(--tw-text-opacity));
 }
 
 .text-\[\#F7F7FD\] {
@@ -2550,8 +2555,8 @@ video {
 body{
   font-family: "Poppins";
   font-display: swap;
-  color: #000929;
-  background-color: #F7F7FD;
+  color: #4a382f;
+  background-color: #f5efe4;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -2597,9 +2602,9 @@ body{
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-.focus-within\:ring-\[\#1E5DBC\]:focus-within {
+.focus-within\:ring-\[\#142a3d\]:focus-within {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(30 93 188 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(20 42 61 / var(--tw-ring-opacity));
 }
 
 .hover\:scale-105:hover {
@@ -2699,9 +2704,9 @@ body{
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-.focus\:ring-\[\#1E5DBC\]:focus {
+.focus\:ring-\[\#142a3d\]:focus {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(30 93 188 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(20 42 61 / var(--tw-ring-opacity));
 }
 
 .focus\:ring-offset-2:focus {

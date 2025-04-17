@@ -184,7 +184,7 @@ function createFilterForm() {
             </div>
             
             <div class="flex items-end">
-                <button type="submit" class="w-full p-3 bg-[#1E5DBC] text-white font-medium rounded-lg hover:bg-[#184a97] transition-colors">
+                <button type="submit" class="w-full p-3 bg-[#142a3d] text-white font-medium rounded-lg hover:bg-[#184a97] transition-colors">
                     Buscar Imóveis
                 </button>
             </div>

@@ -235,7 +235,7 @@ export function loadProperties() {
             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusClass}">${statusText}</span>
           </td>
           <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
-            <a href="editar-imovel.html?id=${property.id}" class="text-[#1E5DBC] hover:text-indigo-800 mr-3">Editar</a>
+            <a href="editar-imovel.html?id=${property.id}" class="text-[#142a3d] hover:text-indigo-800 mr-3">Editar</a>
             <a href="javascript:void(0)" class="text-red-600 hover:text-red-800 delete-property" data-id="${property.id}">Remover</a>
           </td>
         `;

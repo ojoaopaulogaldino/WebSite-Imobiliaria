@@ -117,7 +117,7 @@ function loadDashboardData() {
             <p class="mt-2 text-sm text-gray-700">${message.message.substring(0, 100)}${message.message.length > 100 ? '...' : ''}</p>
             <div class="mt-3 flex justify-end">
               <a href="${message.type === 'whatsapp' ? 'ver-whatsapp.html?id=' + message.id : 'ver-contato.html?id=' + message.id}" 
-                 class="text-sm text-[#1E5DBC] font-medium hover:underline">
+                 class="text-sm text-[#142a3d] font-medium hover:underline">
                 Ver mensagem completa
               </a>
             </div>

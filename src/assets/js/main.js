@@ -287,7 +287,7 @@ async function loadPropertyDetails() {
                 <div class="text-center w-full py-8">
                     <p class="text-xl font-bold text-red-600 mb-4">Erro ao carregar o imóvel</p>
                     <p>${error.message}</p>
-                    <a href="index.html" class="bg-[#1E5DBC] text-white py-2 px-4 rounded-lg font-semibold inline-block mt-4">
+                    <a href="index.html" class="bg-[#142a3d] text-white py-2 px-4 rounded-lg font-semibold inline-block mt-4">
                         Voltar para a página inicial
                     </a>
                 </div>
@@ -363,7 +363,7 @@ function updatePropertyDetailsUI(content, property) {
             const amenityDiv = document.createElement('div');
             amenityDiv.className = 'flex items-center gap-2';
             amenityDiv.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#1E5DBC]" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#142a3d]" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
                 <span>${amenity}</span>
@@ -942,7 +942,7 @@ function updatePagination(totalItems) {
     function createPageButton(pageNum) {
         const button = document.createElement('a');
         button.href = 'javascript:void(0)';
-        button.className = `flex items-center justify-center w-10 h-10 rounded-full ${pageNum === currentPage ? 'bg-[#1E5DBC] text-white' : 'border border-[#E0DEF7]'} font-bold`;
+        button.className = `flex items-center justify-center w-10 h-10 rounded-full ${pageNum === currentPage ? 'bg-[#142a3d] text-white' : 'border border-[#E0DEF7]'} font-bold`;
         button.textContent = pageNum;
         
         if (pageNum !== currentPage) {

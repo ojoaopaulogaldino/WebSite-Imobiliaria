@@ -173,7 +173,7 @@ async function loadProperties() {
             propertiesGrid.innerHTML = `
                 <div class="text-center w-full col-span-3 py-12">
                     <p class="text-xl mb-4">Nenhum imóvel encontrado com os filtros atuais.</p>
-                    <button class="p-3 bg-[#1E5DBC] text-white font-medium rounded-lg hover:bg-[#184a97] transition-colors"
+                    <button class="p-3 bg-[#142a3d] text-white font-medium rounded-lg hover:bg-[#184a97] transition-colors"
                         onclick="window.location.href='imoveis.html'">
                         Limpar Filtros
                     </button>
@@ -242,7 +242,7 @@ function createPropertyCard(property) {
         <a href="imovel-detalhes.html?id=${property.id}" class="block">
             <div class="relative">
                 <img src="${imageUrl}" alt="${property.title}" class="w-full h-52 object-cover">
-                <div class="absolute top-0 right-0 bg-[#1E5DBC] text-white px-3 py-1 m-2 rounded">
+                <div class="absolute top-0 right-0 bg-[#142a3d] text-white px-3 py-1 m-2 rounded">
                     ${transactionType}
                 </div>
                 <div class="absolute bottom-0 left-0 bg-[rgba(0,0,0,0.7)] text-white px-3 py-1 m-2 rounded">
@@ -253,7 +253,7 @@ function createPropertyCard(property) {
                 <h3 class="font-bold text-lg mb-2 line-clamp-2">${property.title}</h3>
                 <p class="text-gray-600 mb-2">${property.neighborhood}, ${property.city}</p>
                 <div class="flex justify-between items-center">
-                    <span class="font-bold text-xl text-[#1E5DBC]">${price}</span>
+                    <span class="font-bold text-xl text-[#142a3d]">${price}</span>
                 </div>
                 <div class="flex mt-4 space-x-4 text-gray-600">
                     ${property.bedrooms ? `<div><span class="mr-1">🛏️</span> ${property.bedrooms} quartos</div>` : ''}
@@ -283,7 +283,7 @@ function updatePagination() {
     
     // Botão anterior
     const prevButton = document.createElement('button');
-    prevButton.className = `px-4 py-2 rounded ${currentPage === 1 ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-[#1E5DBC] text-white hover:bg-[#184a97]'}`;
+    prevButton.className = `px-4 py-2 rounded ${currentPage === 1 ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-[#142a3d] text-white hover:bg-[#184a97]'}`;
     prevButton.textContent = 'Anterior';
     prevButton.disabled = currentPage === 1;
     prevButton.addEventListener('click', () => {
@@ -297,7 +297,7 @@ function updatePagination() {
     // Números de página
     for (let i = 1; i <= totalPages; i++) {
         const pageButton = document.createElement('button');
-        pageButton.className = `px-4 py-2 rounded ${i === currentPage ? 'bg-[#1E5DBC] text-white' : 'bg-gray-200 hover:bg-gray-300'}`;
+        pageButton.className = `px-4 py-2 rounded ${i === currentPage ? 'bg-[#142a3d] text-white' : 'bg-gray-200 hover:bg-gray-300'}`;
         pageButton.textContent = i;
         pageButton.addEventListener('click', () => {
             if (i !== currentPage) {
@@ -310,7 +310,7 @@ function updatePagination() {
     
     // Botão próximo
     const nextButton = document.createElement('button');
-    nextButton.className = `px-4 py-2 rounded ${currentPage === totalPages ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-[#1E5DBC] text-white hover:bg-[#184a97]'}`;
+    nextButton.className = `px-4 py-2 rounded ${currentPage === totalPages ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-[#142a3d] text-white hover:bg-[#184a97]'}`;
     nextButton.textContent = 'Próximo';
     nextButton.disabled = currentPage === totalPages;
     nextButton.addEventListener('click', () => {
