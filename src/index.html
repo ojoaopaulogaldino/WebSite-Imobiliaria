@@ -51,6 +51,7 @@
     </style>
 </head>
 <body>
+    
     <nav class="bg-white">
         <div class="flex items-center justify-between w-full max-w-[1130px] py-[22px] mx-auto px-4 lg:px-0">
             <a href="index.html">
@@ -130,7 +131,7 @@
             <div id="Hero-Text" class="relative flex flex-col w-full max-w-full lg:max-w-[650px] h-fit rounded-[30px] border border-[#E0DEF7] p-6 lg:p-10 gap-[20px] lg:gap-[30px] bg-white mt-[30px] lg:mt-[70px] mx-4 lg:ml-[calc((100%-1130px)/2)] z-10">
                 <div class="flex items-center w-fit rounded-full py-2 px-4 gap-[10px] bg-[#18110e]">
                     <img src="assets/images/icons/crown-white.svg" class="w-5 h-5" alt="icon">
-                    <span class="font-semibold text-white text-sm lg:text-base">Mais que imóveis, realizamos sonhos</span>
+                    <span class="font-semibold text-white text-sm lg:text-base">Mais que imóveis, realizamos sonhos.</span>
                 </div>
                 <h1 class="font-extrabold text-[32px] lg:text-[50px] leading-[42px] lg:leading-[60px] text-[#142a3d]">Encontre o Imóvel<br>ideal com quem entende do assunto</h1>
                 <p class="text-base lg:text-lg leading-7 lg:leading-8 text-[#000929]">Excelentes oportunidades para morar ou investir!</p>
@@ -182,7 +183,7 @@
                     <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold">imóvel</h2>
                 </div>
             </div>
-            
+      
             <!-- Lado direito - Azul escuro -->
             <div class="w-full md:w-[55%] bg-[#0e314f] py-8 md:py-14">
                 <div class="flex flex-col md:flex-row items-center justify-between px-[5%] md:px-[8%] space-y-6 md:space-y-0">
@@ -222,6 +223,7 @@
         </style>
       </div>
     </section>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
@@ -254,5 +256,26 @@
         initializeLocalidadesFrontend('filter-container');
       });
     </script>
+    <!-- Botão Flutuante WhatsApp -->
+<div class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2">
+    <!-- Balão de mensagem -->
+    <div class="bg-white text-[#142a3d] text-sm font-semibold px-4 py-2 rounded-lg shadow-md animate-pulse">
+      Fale pelo WhatsApp
+    </div>
+  
+    <!-- Botão redondo -->
+    <a
+      href="https://wa.me/5565998441316?text=Olá,%20vi%20seu%20site%20e%20gostaria%20de%20mais%20informações."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-14 h-14 rounded-full bg-[#25D366] shadow-lg flex items-center justify-center hover:bg-green-600 transition-all duration-300"
+    >
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+        alt="WhatsApp"
+        class="w-6 h-6"
+      />
+    </a>
+  </div>
 </body>
 </html>
